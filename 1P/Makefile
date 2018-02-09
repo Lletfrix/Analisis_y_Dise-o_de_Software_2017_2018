@@ -1,5 +1,6 @@
 JAVAC=javac
 BUILD_DIR=build
+JFLAGS=-d $(BUILD_DIR) -cp $(BUILD_DIR)
 SRC_DIR=src
 sources = $(wildcard $(SRC_DIR)/*.java)
 classes = $(sources:.java=.class)
@@ -10,4 +11,4 @@ clean :
 	rm -f $(BUILD_DIR)/*.class
 
 %.class : %.java
-	$(JAVAC) -d $(BUILD_DIR) $<
+	$(JAVAC) $(JFLAGS) $<
