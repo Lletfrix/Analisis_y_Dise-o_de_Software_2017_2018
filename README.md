@@ -1,1 +1,1 @@
-# Analisis_y_Dise-o_de_Software_2017_2018
+# Analisis_y_Diseño_de_Software_2017_2018
