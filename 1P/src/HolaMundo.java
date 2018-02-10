@@ -1,7 +1,7 @@
 /**
  * Esta aplicacion muestra el mensaje "Hola mundo!" por pantalla
  *
- * @author Rafael Sánchez Sánchez rafael.sanchezs@estudiante.uam.es
+ * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public class HolaMundo {
