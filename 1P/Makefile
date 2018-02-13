@@ -10,5 +10,9 @@ all: $(classes)
 clean :
 	rm -f $(BUILD_DIR)/*.class
 
+.PHONY: doc
+doc:
+	javadoc -d doc -author $(sources)
+	
 %.class : %.java
 	$(JAVAC) $(JFLAGS) $<

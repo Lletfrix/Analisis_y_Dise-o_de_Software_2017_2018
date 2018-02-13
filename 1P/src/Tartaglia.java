@@ -1,22 +1,30 @@
 /**
  * Aplicación que, usando la clase Combinatoria suministrada, genera el triángulo de Tartaglia
  * de n filas, siendo n un parámetro de entrada dado por el usuario.
- * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+ * @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public class Tartaglia {
 	private Combinatoria c;
 	private int n;
+	/**
+	 * Constructor de la clase Tartaglia
+	 *
+	 * <p>Construye un objeto de la clase Tartaglia.</p>
+	 *
+	 * @param c Objeto de la clase Combinatoria que se usará para generar el triangulo de Tartaglia
+	 * @param n Número de filas del triangulo
+	 */
   public Tartaglia(Combinatoria c, int n) {
     this.c = c;
     this.n = n;
   }
 	/**
-   * Sustitución del toString estándar en la clase Tartaglia
+   * Sustitución del toString estandar en la clase Tartaglia
    *
-   * <p>Genera el árbol de Tartaglia del objeto en basea a sus atributos como una única string.</p>
+   * <p>Genera el triangulo de Tartaglia del objeto en base a sus atributos como una unica string.</p>
    *
-   * @return String que representa el triángulo de Tartaglia de tantas filas como indique su atributo n.
+   * @return String que representa el triangulo de Tartaglia de tantas filas como indique su atributo n.
    */
   public String toString(){
     String s = "";
@@ -30,11 +38,11 @@ public class Tartaglia {
     return s;
   }
   /**
-   * Punto de entrada a la aplicación.
+   * Punto de entrada a la aplicacion.
    *
-   * <p>Este método imprime el triángulo de Tartaglia de tantas filas como el argumento de entrada.</p>
+   * <p>Este metodo imprime el triángulo de Tartaglia de tantas filas como el argumento de entrada.</p>
    *
-   * @param args Los argumentos de la línea de comando. Se espera un único entero, el número de filas del triángulo deseadas.
+   * @param args Los argumentos de la linea de comando. Se espera un único entero, el numero de filas del triangulo deseadas.
    */
   public static void main(String[] args) {
     if (args.length!=1) {

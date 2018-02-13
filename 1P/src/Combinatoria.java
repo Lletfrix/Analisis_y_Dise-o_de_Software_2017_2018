@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Esta aplicación calcula el número de combinaciones sin repetición de n elementos
  * tomados de k en k.
@@ -11,24 +12,16 @@
  */
 public class Combinatoria {
 
-  /*
-   * Si la clase tuviera atributos, los declararíamos aquí, como
-   * private Tipo1 atributo1;
-   * private Tipo2 atributo2;
-   * ...
-   * También se pueden inicializar al declararlos, por ejemplo
-   * private int contador= 0;
-   * El valor inicial también se puede asignar en el constructor
-   */
+  private Map<Integer, Long> cache = new HashMap<>();
 
   /**
-   * Ejemplo de constructor, en esta clase sería innecesario, ya que no tiene argumentos
+   * Ejemplo de constructor, en esta clase seria innecesario, ya que no tiene argumentos
    * ni inicializa atributos. El compilador crea uno igual si no existe.
    * Es importante que no devuelva nada (tampoco void), y que se llame como la clase.
-   * Si fuese privado impediría crear objetos de este tipo desde otras clases.
+   * Si fuese privado impediria crear objetos de este tipo desde otras clases.
    */
   public Combinatoria(/* Argumentos para construir el objeto, si los hubiera */) {
-	  /* Esta clase no tiene atributos, por lo que este constructor vacío lo crearía
+	  /* Esta clase no tiene atributos, por lo que este constructor vacio lo crearía
 	   * automáticamente el compilado, y no es necesario
 	   * Si tenemos un atributo (atributo1) con el mismo nombre que un argumento, podemos usar
 	   * "this.atributo1" para referirnos al atributo, y "atributo1" para el argumento
@@ -38,19 +31,41 @@ public class Combinatoria {
   }
 
   /**
-   * Devuelve el número de combinaciones posibles de n elementos tomados de k en k
-   * @param n Número de elementos totales
-   * @param k Número de elementos, sin repetición, en cada combinación
+   * <p>Devuelve el numero de combinaciones posibles de n elementos tomados de k en k</p>
+   * @param n Numero de elementos totales
+   * @param k Numero de elementos, sin repetición, en cada combinación
    * @return valor del coeficiente binomial (n, k)
    */
   public long combinaciones(int n, int k){
     //Primero comprobamos si los argumentos son válidos
     if (n<0 || k <0) throw new IllegalArgumentException("n y k han de ser positivos");
+
+    if (cache.containsKey(posicion(n, k))){
+      return cache.get(posicion(n, k));
+    }
     //Casos base
-    else if (k == 0 || n==k ) return 1; //caso base para 1
-    else if (k > n) return 0; //caso base para 0
+    if (k == 0 || n==k ){
+      cache.put(posicion(n, k), (long) 1);
+      return 1;
+    } //caso base para 1
+    if (k > n){
+      cache.put(posicion(n, k), (long) 0);
+      return 0;
+    }
     //caso general
-    else return combinaciones(n-1, k-1)+ combinaciones (n-1, k);
+    long comb = combinaciones(n-1, k-1)+ combinaciones (n-1, k);
+    cache.put(posicion(n, k), comb);
+    return comb;
+  }
+
+  /**
+   * <p>Calcula la posición del combinatorio (n, k) en el triangulo de Tartaglia comenzando en 0</p>
+   * @param n Número de elementos totales
+   * @param k Número de elementos, sin repetición, en cada combinación
+   * @return Posicion en el triangulo de Tartaglia de C(n, k)
+   */
+  private int posicion(int n, int k){
+    return n*(n+1)/2 + k;
   }
 
 
