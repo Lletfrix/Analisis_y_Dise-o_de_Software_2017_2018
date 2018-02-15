@@ -1,5 +1,7 @@
 JAVAC=javac
 BUILD_DIR=build
+ZIP_NAME=G2102_RAFAEL_SERGIO
+DIST_PATH=./*
 JFLAGS=-d $(BUILD_DIR) -cp $(BUILD_DIR) -sourcepath $(SRC_DIR)
 SRC_DIR=src
 sources = $(wildcard $(SRC_DIR)/*.java)
@@ -14,8 +16,10 @@ all: $(classes) doc
 doc: $(sources)
 	mkdir -p doc
 	javadoc -d doc -author $(sources)
-	
+
+.PHONY: dist
+dist:
+	zip -r $(ZIP_NAME).zip $(DIST_PATH)
 .PHONY: clean
 clean :
-	rm -rf $(BUILD_DIR)/*.class doc
-
+	rm -rf $(BUILD_DIR)/*.class doc *.zip
