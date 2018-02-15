@@ -78,7 +78,7 @@ public class Combinatoria {
    */
    public static void main(String[] args) {
       if (args.length!=2) {
-    	  System.out.println("Se espera dos número como parámetro, n y k.");
+    	  System.out.println("Se esperan dos número como parámetro, n y k.");
     	  System.out.println("  n = Número total de elementos ");
     	  System.out.println("  k = Elementos en cada combinación");
     	  System.out.println("Devuelve el coeficiente binomial(n, k)");
