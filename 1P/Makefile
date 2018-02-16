@@ -1,6 +1,6 @@
 JAVAC=javac
 BUILD_DIR=build
-ZIP_NAME=G2102_RAFAEL_SERGIO
+ZIP_NAME=G2202_RafaelSergio
 DIST_PATH=./*
 JFLAGS=-d $(BUILD_DIR) -cp $(BUILD_DIR) -sourcepath $(SRC_DIR)
 SRC_DIR=src
