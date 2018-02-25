@@ -1,13 +1,15 @@
 JAVAC=javac
 BUILD_DIR=build
-ZIP_NAME=G2102_RAFAEL_SERGIO
+ZIP_NAME=GR2202_RafaelSergio
 DIST_PATH=./*
 JFLAGS=-d $(BUILD_DIR) -cp $(BUILD_DIR) -sourcepath $(SRC_DIR)
 SRC_DIR=src
 sources = $(wildcard $(SRC_DIR)/*.java)
 classes = $(sources:.java=.class)
 
-all: $(classes) doc
+build: $(classes)
+
+all: build doc dist
 
 %.class : %.java
 	$(JAVAC) $(JFLAGS) $<
