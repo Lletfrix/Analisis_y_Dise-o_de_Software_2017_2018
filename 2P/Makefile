@@ -17,7 +17,7 @@ all: build doc dist
 .PHONY: doc
 doc: $(sources)
 	mkdir -p doc
-	javadoc -d doc -author $(sources)
+	javadoc -d doc -encoding utf8 -docencoding utf8 -charset utf8 -author $(sources)
 
 .PHONY: dist
 dist:

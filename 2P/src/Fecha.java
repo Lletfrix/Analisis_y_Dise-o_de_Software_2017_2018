@@ -1,3 +1,8 @@
+/**
+* Clase Fecha en la que almacenamos todos los datos requeridos (día, mes y año), y los métodos necesarios para poder
+* mostrar la información requerida en el apartado 1 de la práctica 2.
+* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+*/
 public class Fecha {
     private int dia;
     private int mes;
@@ -9,7 +14,7 @@ public class Fecha {
      * @param mes Mes de la fecha
      * @param anio Anio de la fecha
      */
-    public Fecha(int dia, int mes, int anio){
+    public Fecha(int anio, int mes, int dia){
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
@@ -19,21 +24,21 @@ public class Fecha {
      * @return String que representa los datos de cada objeto Fecha con el formato requerido
      */
     public String toString(){
-        String datos = dia + "-" + mes + "-" + anio;
+        String datos = anio + "-" + mes + "-" + dia;
         return datos;
     }
     /**
      * Comprobador de la validez de una Fecha dada. Admitimos cualquier año positivo.
      * @return Boolean que representa si una Fecha es válida o no
      */
-    public Boolean isValida(){
-        if (fecha.mes < 1 || fecha.mes > 12 || fecha.anio < 0){
+    public Boolean isFechaValida(){
+        if (this.mes < 1 || this.mes > 12 || this.anio < 0){
             return false;
         }
-        if (fecha.anio%4 == 0 && fecha.mes == 2 && fecha.anio%100 != 0){
-            return (0 < fecha.dia && 30 > fecha.dia);
+        if (this.anio%4 == 0 && this.mes == 2 && this.anio%100 != 0){
+            return (0 < this.dia && 30 > this.dia);
         }
-        if (diasMes[fecha.mes - 1] < fecha.dia || fecha.dia < 1){
+        if (diasMes[this.mes - 1] < this.dia || this.dia < 1){
             return false;
         }
         return true;
