@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
 * Clase Profesor en la que almacenamos todos los datos requeridos, y los métodos necesarios para poder
 * mostrar la información requerida en el apartado 4 opcional de la práctica 2. No se implementa la clase
@@ -7,13 +8,11 @@
 public class Profesor{
     private String numSS;
     private float salario;
-    private boolean activo;
     private String nombre;
     private String apellidos;
     private String dni;
     private String telefono;
-    private Fecha fechaInic;
-    private Fecha fechaFin;
+    private ArrayList<Contrato> contratos;
     /**
      * Constructor de la clase Profesor
      * @param numSS Numero de la Seguridad Social del profesor
@@ -26,48 +25,36 @@ public class Profesor{
      * @param mes Mes de la primera clase del Profesor
      * @param dia Dia de la primera clase del Profesor
      */
-    public Profesor(String numSS, float salario, String nombre, String apellidos, String dni, String telefono, int anio, int mes, int dia){
+    public Profesor(String numSS, float salario, String nombre, String apellidos, String dni, String telefono){
         this.numSS = numSS;
         this.salario = salario;
-        this.activo = true;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.telefono = telefono;
-        this.fechaInic = new Fecha(anio, mes, dia);
+        this.contratos = new ArrayList<Contrato>();
     }
 
     /**
-     * Setter de la fecha final del Profesor
-     * @param anio Último año de clase del Profesor
-     * @param mes Último mes de clase del Profesor
-     * @param dia Último dia de clase del Profesor
+     * Añade un nuevo Contrato a la lista de Contratos del profesor (Devuelve el propio Profesor para permitir múltiples adiciones seguidas)
+     * @param contrato Contrato a añadir a la lista
+     * @return El propio Profesor
      */
-    public void finDeContrato(int anio, int mes, int dia){
-        this.fechaFin = new Fecha(anio, mes, dia);
-        if (!this.fechaFin.isFechaValida()){
-            return;
+    public Profesor addContrato(Contrato contrato){
+        this.contratos.add(contrato);
+        return this;
+    }
+
+    /**
+     * Imprime toda la información relativa a las Autoescuelas y periodos en los que ha trabajado en ellas el Profesor
+     * @return Void
+     */
+    public void printInformacion(){
+        for (Contrato contrato : contratos){
+            System.out.println("El profesor " + this.nombre + " " + this.apellidos +
+            " ha trabajado en la autoescuela " + contrato.getAutoescuela().getNombre() + " desde el " +
+            contrato.getFechaInic() + " hasta el " + contrato.getFechaFin() + "\n");
         }
-        this.activo = false;
-    }
-
-    /**
-     * Getter de la Fecha de inicio del Profesor
-     * @return Fecha de inicio del Profesor
-     */
-    public Fecha getFechaInic(){
-        return this.fechaInic;
-    }
-
-    /**
-     * Getter de la Fecha de finalización de docencia del Profesor
-     * @return Fecha de finalización de docencia del Profesor. NULL si aún está en activo, aunque en principio nunca deberá retornar eso
-     */
-    public Fecha getFechaFin(){
-        if(activo){
-            return this.fechaFin;
-        }
-        return NULL;
     }
 
     /**
