@@ -21,9 +21,6 @@ public class Profesor{
      * @param apellidos Apellidos del Profesor
      * @param dni Dni del Profesor
      * @param telefono Telefono del Profesor
-     * @param anio Año de la primera clase del Profesor
-     * @param mes Mes de la primera clase del Profesor
-     * @param dia Dia de la primera clase del Profesor
      */
     public Profesor(String numSS, float salario, String nombre, String apellidos, String dni, String telefono){
         this.numSS = numSS;
@@ -47,7 +44,6 @@ public class Profesor{
 
     /**
      * Imprime toda la información relativa a las Autoescuelas y periodos en los que ha trabajado en ellas el Profesor
-     * @return Void
      */
     public void printInformacion(){
         for (Contrato contrato : contratos){

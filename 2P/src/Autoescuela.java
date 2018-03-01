@@ -6,13 +6,22 @@ public class Autoescuela{
     private String nombre;
     private String codigo;
     private String direccion;
-
+    /**
+     * Constructor de la clase Autoescuela
+     * @param nombre Nombre de la Autoescuela
+     * @param codigo Código de la Autoescuela
+     * @param direccion Dirección de la Autoescuela
+     */
     public Autoescuela(String nombre, String codigo, String direccion){
         this.nombre = nombre;
         this.codigo = codigo;
         this.direccion = direccion;
     }
 
+    /**
+     * Getter del atributo nombre de la clase Autoescuela
+     * @return Nombre de la Autoescuela
+     */
     public String getNombre(){
         return this.nombre;
     }
