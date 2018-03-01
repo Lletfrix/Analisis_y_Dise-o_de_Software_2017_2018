@@ -54,7 +54,7 @@ class Revision{
 
     + calcularPrecio(): float
 }
-Reparacion *-->"0..n piezas" Pieza
+Reparacion o-->"0..n piezas" Pieza
 Reparacion *-->"1..n trabajos" Trabajo
 Revision *-->"1..3 trabajos" Trabajo
 
@@ -185,5 +185,12 @@ Contrato --> Fecha : fechaInic
 Contrato --> Fecha : fechaFin
 Contrato "1" --> "1" Autoescuela
 Profesor *--> "0..n contratos" Contrato
+
+class Aplicacion{
+}
+
+Aplicacion *--> "0..n" Autoescuela
+Aplicacion *--> "0..n" Profesor
+Aplicacion *--> "0..n" Taller
 
 @enduml

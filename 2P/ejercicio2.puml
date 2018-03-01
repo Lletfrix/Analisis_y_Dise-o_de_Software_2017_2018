@@ -41,8 +41,8 @@ abstract class ClaseCoche{
 
 }
 
-class Teorica{
-  + ponerNotas() : bool
+    class Teorica{
+      + ponerNotas() : bool
   + calcularPrecio(Alumno) : float
 }
 
@@ -144,5 +144,12 @@ Contrato --> Fecha : fechaInic
 Contrato --> Fecha : fechaFin
 Contrato "1" --> "1" Autoescuela
 Profesor *--> "0..n contratos" Contrato
+
+class Aplicacion{
+}
+
+Aplicacion *--> "0..n" Autoescuela
+Aplicacion *--> "0..n" Profesor
+Aplicacion *--> "0..n" Taller
 
 @enduml
