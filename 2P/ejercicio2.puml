@@ -1,0 +1,148 @@
+@startuml
+skinparam {
+  classAttributeIconSize 0
+  ClassBorderColor Black
+  ClassBackgroundColor White
+  ClassFontStyle bold
+  ClassFontName Courier
+  sequenceMessageAlign direction
+  ClassAttributeFontName Courier
+  ArrowColor Black
+  Shadowing false
+  'linetype ortho
+  'handwritten true
+}
+
+hide enum methods
+
+class Fecha {
+	- anyo : int
+	- mes : int
+	- dia : int
+
+	+ toString() : String
+	+ esFechaValida() : bool
+}
+
+abstract class Clase {
+	- hora : Time
+	- precio : float
+	- duracion : int
+
+	+ toString() : String
+	+ calcularPrecio(Alumno) : float
+}
+
+abstract class ClaseAula{
+
+}
+
+abstract class ClaseCoche{
+
+}
+
+class Teorica{
+  + ponerNotas() : bool
+  + calcularPrecio(Alumno) : float
+}
+
+class Examen{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Practica{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Poligono{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Alumno {
+	- carnetAct : String
+	- carnetMatr : String
+	- descuento : float
+    - notas : List<float>
+
+	+ getFechaMatr() : Fecha
+    + addNota(float) : Alumno
+	+ toString() : String
+}
+
+abstract class Persona{
+  - nombre : String
+  - apellidos : String
+  - dni : String
+  - telefono : String
+
+}
+
+class Profesor{
+  - numSS : String
+  - salario : float
+  - activo : boolean
+}
+
+class Coche{
+  - catCarn : String
+  - matr : String
+  - numBast : String
+  - marca : String
+  - modelo : String
+
+}
+
+class Aula{
+  - codigo : String
+}
+
+class Autoescuela{
+  - codigo : String
+  - direccion : String
+}
+
+Alumno --> Fecha : fechaTeo
+Alumno --> Fecha : fechaPrac
+Alumno --> Fecha : fechaNac
+Alumno --> Fecha : fechaMatr
+
+Profesor --> Fecha : fechaInic
+Profesor --> Fecha : fechaFin
+
+Autoescuela "1" --> "1" Persona : encargado
+Clase --> Fecha : fecha
+
+Aula "1 aula" -- "0..n clases" ClaseAula
+Coche "1 coche" -- "0..n clases" ClaseCoche
+
+ClaseAula --|> Clase
+ClaseCoche --|> Clase
+Teorica --|> ClaseAula
+Examen --|> ClaseCoche
+Practica --|> ClaseCoche
+Poligono --|> ClaseCoche
+Alumno --|> Persona
+Profesor --|> Persona
+
+Alumno "1..n" <--o ClaseAula
+Alumno "1..2" <--o ClaseCoche
+
+Autoescuela *--> Aula : aulas
+Autoescuela *--> Clase : clases
+Autoescuela *--> Alumno : alumnos
+Autoescuela *--> Profesor : profesores
+Autoescuela *--> Coche : flota
+
+Profesor "1" -- "1..n" Clase
+
+class Contrato {
+}
+Contrato --> Fecha : fechaInic
+Contrato --> Fecha : fechaFin
+Contrato "1" --> "1" Autoescuela
+Profesor *--> "0..n contratos" Contrato
+
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+skinparam {
+  classAttributeIconSize 0
+  ClassBorderColor Black
+  ClassBackgroundColor White
+  ClassFontStyle bold
+  ClassFontName Courier
+  ClassAttributeFontName Courier
+  ArrowColor Black
+  Shadowing false
+  linetype ortho
+  'handwritten true
+}
+
+hide enum methods
+
+class Fecha {
+	- anyo : int
+	- mes : int
+	- dia : int
+
+	+ toString() : String
+	+ esFechaValida() : bool
+}
+
+abstract class Clase {
+	- hora : Time
+	- precio : float
+	- duracion : int
+
+	+ toString() : String
+	+ calcularPrecio(Alumno) : float
+}
+
+class Teorica{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Examen{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Practica{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Poligono{
+
+  + calcularPrecio(Alumno) : float
+}
+
+class Alumno {
+	- nombre : String
+	- apellidos : String
+	- dni : String
+	- telefono : String
+	- carnetAct : String
+	- carnetMatr : String
+	- descuento : float
+
+	+ getFechaMatr() : Fecha
+	+ toString() : String
+}
+
+Alumno --> Fecha : fechaTeo
+Alumno --> Fecha : fechaPrac
+Alumno --> Fecha : fechaNac
+Alumno --> Fecha : fechaMatr
+
+Clase --> Fecha : fecha
+
+Teorica --|> Clase
+Practica --|> Clase
+Poligono --|> Clase
+Examen --|> Clase
+
+Clase o--> "1..n"  Alumno : estudiante
+
+@enduml
