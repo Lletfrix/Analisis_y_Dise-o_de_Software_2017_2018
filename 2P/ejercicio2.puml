@@ -109,9 +109,6 @@ Alumno --> Fecha : fechaPrac
 Alumno --> Fecha : fechaNac
 Alumno --> Fecha : fechaMatr
 
-Profesor --> Fecha : fechaInic
-Profesor --> Fecha : fechaFin
-
 Autoescuela "1" --> "1" Persona : encargado
 Clase --> Fecha : fecha
 
