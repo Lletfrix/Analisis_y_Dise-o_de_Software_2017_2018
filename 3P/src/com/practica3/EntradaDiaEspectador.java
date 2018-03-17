@@ -1,15 +1,16 @@
 package com.practica3;
 
 public class EntradaDiaEspectador extends Entrada{
-    private float descuento;
+    private static double descuentoGlobal = 0.9;
+    private double descuento;
 
-    public EntradaDiaEspectador(float precio, Pelicula pelicula, float descuento) {
-        super(precio, pelicula);
-        this.descuento = descuento;
+    public EntradaDiaEspectador() {
+        super();
+        this.descuento = descuentoGlobal;
     }
 
     @Override
-    public float getPrecio() {
+    public double getPrecio() {
         return super.getPrecio() * descuento;
     }
 }

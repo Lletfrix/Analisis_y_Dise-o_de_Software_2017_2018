@@ -1,27 +1,18 @@
 package com.practica3;
 
 public class Entrada {
-    float precio;
-    Pelicula pelicula;
+    private static double precioGlobal = 7.5;
+    private double precio;
 
-    public Entrada(float precio, Pelicula pelicula) {
-        this.precio = precio;
-        this.pelicula = pelicula;
+    public Entrada() {
+        this.precio = precioGlobal;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    public Pelicula getPelicula() {
-        return pelicula;
-    }
-
-    public void setPelicula(Pelicula pelicula) {
-        this.pelicula = pelicula;
     }
 }

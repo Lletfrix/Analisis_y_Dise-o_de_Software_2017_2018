@@ -1,57 +1,71 @@
 package com.practica3;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Sala{
+    private static int idSerial = 1;
     private final int id;
-    private int butacasFila;
-    private int butacasColumna;
-    private List<Sesion> sesiones;
+    private int numButacasFila;
+    private int numButacasColumna;
+    private ArrayList<Sesion> sesiones;
 
-    public Sala(int id, int butacasFila, int butacasColumna){
-        this.id = id;
-        this.butacasFila = butacasFila;
-        this.butacasColumna = butacasColumna;
+    public Sala(int numButacasFila, int numButacasColumna){
+        this.id = this.idSerial;
+        this.numButacasFila = numButacasFila;
+        this.numButacasColumna = numButacasColumna;
         this.sesiones = new ArrayList<Sesion>();
+        this.idSerial++;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getButacasFila() {
-        return butacasFila;
+    public int getNumButacasFila() {
+        return numButacasFila;
     }
 
-    public int getButacasColumna() {
-        return butacasColumna;
+    public int getNumButacasColumna() {
+        return numButacasColumna;
     }
 
-    public List<Sesion> getSesiones() {
+    public ArrayList<Sesion> getSesiones() {
         return sesiones;
     }
 
-    public void setButacasFila(int butacasFila) {
-        this.butacasFila = butacasFila;
+    public void setNumButacasFila(int numButacasFila) {
+        this.numButacasFila = numButacasFila;
     }
 
-    public void setButacasColumna(int butacasColumna) {
-        this.butacasColumna = butacasColumna;
+    public void setNumButacasColumna(int numButacasColumna) {
+        this.numButacasColumna = numButacasColumna;
     }
 
-    public Boolean addSesion(Sesion sesion){
+    private boolean isSalaDisponible(Calendar fecha){
         int i;
         for(i = 0; i < sesiones.size(); i++){
-            if (sesiones.get(i).getFecha() == sesion.getFecha()){
+            if (sesiones.get(i).getFecha() == fecha){
                 return false;
             }
         }
-        sesiones.add(sesion);
         return true;
     }
 
+    public Boolean addSesion(Sesion sesion){
+        if(isSalaDisponible(sesion.getFecha())){
+            sesiones.add(sesion);
+            return true;
+        }
+        return false;
+    }
+
     public int calcularButacas(){
-        return (this.butacasFila*this.butacasColumna);
+        return (this.numButacasFila*this.numButacasColumna);
+    }
+
+    public String toString(){
+        return "Sala: " + id;
     }
 }

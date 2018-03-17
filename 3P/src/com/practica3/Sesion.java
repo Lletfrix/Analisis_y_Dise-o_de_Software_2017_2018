@@ -19,8 +19,8 @@ public class Sesion {
         this.sala = sala;
         butacasDisponibles = this.sala.calcularButacas();
         this.butacas = new ArrayList<Butaca>();
-        for ( int i = 0; i < this.sala.getButacasFila() ; ++i ) {
-            for (int j = 0; i < this.sala.getButacasColumna() ; ++j){
+        for ( int i = 0; i < this.sala.getNumButacasFila() ; ++i ) {
+            for (int j = 0; i < this.sala.getNumButacasColumna() ; ++j){
                 this.butacas.add(new Butaca(i, j));
             }
         }
@@ -34,7 +34,7 @@ public class Sesion {
 
         for (int i = 0; i < this.butacas.size(); i++){
             if (this.butacas.get(i).isFree()){
-                fila = i%this.sala.getButacasFila();
+                fila = i%this.sala.getNumButacasFila();
                 columna = i - fila;
                 break;
             }
@@ -44,7 +44,7 @@ public class Sesion {
     }
 
     public boolean actualizarButacasVendidas(int fila, int columna){
-        int index = fila*this.sala.getButacasColumna() + columna;
+        int index = fila*this.sala.getNumButacasColumna() + columna;
         if (!this.butacas.get(index).isFree()){
             return false;
         }
@@ -71,5 +71,9 @@ public class Sesion {
 
     public Sala getSala() {
         return sala;
+    }
+
+    public String toString() {
+        return this.pelicula.toString() + this.sala.toString() + fecha + butacasDisponibles;
     }
 }

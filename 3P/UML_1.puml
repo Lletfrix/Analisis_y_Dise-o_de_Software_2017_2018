@@ -21,24 +21,23 @@ class Cine << (S,#FF7700) >> {
     + addPelicula(String titulo, String director, String anno, String sinopsis, String genero) : void
     + addSala(int numButacas) : void
     + addSesion(Pelicula pelicula, Sala sala, Calendar fecha) : void
-    + venderEntradas(Sesion sesion, int numEntradas) : Boolean
+    + venderEntradas(Sesion sesion, int numEntradas) : boolean
     + showPeliculas() : void
     + showRecaudacion() : void
     + showSesiones() : void
-    + showFechasPelicula() : void
 }
 
 class Sesion {
     - fecha : Calendar
     - butacasDisponibles : int
 
-    + actuaizarButacasVendidas() : Boolean
+    + actuaizarButacasVendidas() : boolean
 }
 
 class Butaca{
     - fila : int
     - columna : int
-    - disponible : Boolean
+    - free : boolean
 }
 
 class Pelicula{
@@ -53,9 +52,12 @@ class Pelicula{
 
 class Sala{
     - id : int
-    - numButacas : int
+    - numButacasFila : int
+    - numButacasColumna : int
 
-    + isSalaDisponible(Calendar fecha) : Boolean
+    - isSalaDisponible(Calendar fecha) : boolean
+    + calcularButacas() : int
+    + addSesion(Sesion sesion) : boolean
 }
 
 class Entrada{
@@ -71,7 +73,17 @@ class EntradaEspectador extends Entrada{
 }
 
 enum Genero {
-
+    ACCION,
+    BELICA,
+    WESTERN,
+    THRILLER,
+    TERROR,
+    SUSPENSE,
+    POLICIAL,
+    MUSICAL,
+    COMEDIA,
+    CIENCIAFICCION,
+    DOCUMENTAL;
 }
 
 Cine *--> Sala

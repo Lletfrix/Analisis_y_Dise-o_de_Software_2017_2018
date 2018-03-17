@@ -1,18 +1,22 @@
 package com.practica3;
 
+import java.util.ArrayList;
+
 public class Pelicula{
     private String titulo;
     private String director;
-    private int anno;
+    private String anno;
     private String sinopsis;
     private Genero genero;
+    private ArrayList<Sesion> sesiones;
 
-    public Pelicula(String titulo, String director, int anno, String sinopsis, Genero genero){
+    public Pelicula(String titulo, String director, String anno, String sinopsis, Genero genero){
         this.titulo = titulo;
         this.director = director;
         this.anno = anno;
         this.sinopsis = sinopsis;
         this.genero = genero;
+        this.sesiones = new ArrayList<Sesion>();
     }
 
     public String getTitulo(){
@@ -23,7 +27,7 @@ public class Pelicula{
         return this.director;
     }
 
-    public int getAnno(){
+    public String getAnno(){
         return this.anno;
     }
 
@@ -43,7 +47,7 @@ public class Pelicula{
         this.director = director;
     }
 
-    public void setAnno(int anno){
+    public void setAnno(String anno){
         this.anno = anno;
     }
 
@@ -53,6 +57,16 @@ public class Pelicula{
 
     public void setGenero(Genero genero){
         this.genero = genero;
+    }
+
+    public void showSesiones(){
+        for (Sesion sesion : this.sesiones) {
+            System.out.println(sesion);
+        }
+    }
+
+    public void addSesion(Sesion sesion){
+        this.sesiones.add(sesion);
     }
     @Override
     public String toString(){
