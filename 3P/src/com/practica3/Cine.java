@@ -18,8 +18,8 @@ public class Cine {
         Sala s = new Sala(numButacasFila, numButacasColumna);
         this.listaSalas.add(s);
     }
-    public void addSesion(Pelicula pelicula, Sala sala, Calendar fecha){
-        Sesion sesion = new Sesion(fecha, pelicula, sala);
+    public void addSesion(int anno, int mes, int dia, int hora, int minutos, Pelicula pelicula, Sala sala){
+        Sesion sesion = new Sesion(anno, mes, dia, hora, minutos, pelicula, sala);
         if (!sala.addSesion(sesion)){
             return;
         }

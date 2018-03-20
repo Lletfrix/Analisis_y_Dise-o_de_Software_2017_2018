@@ -3,7 +3,7 @@ package com.practica3;
 import java.util.ArrayList;
 import java.util.Calendar;
 /**
- * Clase Sesion que incluye la información sobre las Sesiones en las
+ * Clase SesionTest que incluye la información sobre las Sesiones en las
  * que se proyectan las Peliculas.
  */
 public class Sesion {
@@ -13,14 +13,20 @@ public class Sesion {
     private int butacasDisponibles;
     private Sala sala;
 
-    public Sesion (Calendar fecha, Pelicula pelicula, Sala sala) {
+    public Sesion (int anno, int mes, int dia, int hora, int min, Pelicula pelicula, Sala sala) {
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(Calendar.YEAR, anno);
+        fecha.set(Calendar.MONTH, mes+1);
+        fecha.set(Calendar.DAY_OF_MONTH, dia);
+        fecha.set(Calendar.HOUR_OF_DAY, hora);
+        fecha.set(Calendar.MINUTE, min);
         this.fecha = fecha;
         this.pelicula = pelicula;
         this.sala = sala;
         butacasDisponibles = this.sala.calcularButacas();
         this.butacas = new ArrayList<Butaca>();
         for ( int i = 0; i < this.sala.getNumButacasFila() ; ++i ) {
-            for (int j = 0; i < this.sala.getNumButacasColumna() ; ++j){
+            for (int j = 0; j < this.sala.getNumButacasColumna() ; ++j){
                 this.butacas.add(new Butaca(i, j));
             }
         }
@@ -35,16 +41,18 @@ public class Sesion {
         for (int i = 0; i < this.butacas.size(); i++){
             if (this.butacas.get(i).isFree()){
                 fila = i%this.sala.getNumButacasFila();
-                columna = i - fila;
+                columna = (int) Math.floor(i/this.sala.getNumButacasColumna());
                 break;
             }
         }
-        actualizarButacasVendidas(fila, columna);
-        return true;
+        return actualizarButacasVendidas(fila, columna);
     }
 
     public boolean actualizarButacasVendidas(int fila, int columna){
-        int index = fila*this.sala.getNumButacasColumna() + columna;
+        if(fila > this.sala.getNumButacasFila() || columna > this.sala.getNumButacasColumna()){
+            return false;
+        }
+        int index = columna*this.sala.getNumButacasColumna() + fila;
         if (!this.butacas.get(index).isFree()){
             return false;
         }
@@ -74,6 +82,6 @@ public class Sesion {
     }
 
     public String toString() {
-        return this.pelicula.toString() + this.sala.toString() + fecha + butacasDisponibles;
+        return this.pelicula.toString() + this.sala.toString() + " - Butacas disponibles: " + this.butacasDisponibles + "\nFecha: " + fecha.getTime().toString() + butacasDisponibles;
     }
 }
