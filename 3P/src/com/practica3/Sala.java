@@ -5,16 +5,14 @@ package com.practica3;
  * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 public class Sala{
     private static int idSerial = 1;
     private final int id;
     private int numButacasFila;
     private int numButacasColumna;
-    private ArrayList<Sesion> sesiones;
+    private LinkedList<Sesion> sesiones;
     /**
      * Constructor de la clase Sala
      * @param numButacasFila Número de Butacas por fila de la Sala
@@ -24,7 +22,7 @@ public class Sala{
         this.id = this.idSerial;
         this.numButacasFila = numButacasFila;
         this.numButacasColumna = numButacasColumna;
-        this.sesiones = new ArrayList<Sesion>();
+        this.sesiones = new LinkedList<Sesion>();
         this.idSerial++;
     }
     /**
@@ -52,7 +50,7 @@ public class Sala{
      * Getter de la lista de Sesiones de la Sala
      * @return lista de Sesiones de la Sala
      */
-    public ArrayList<Sesion> getSesiones() {
+    public LinkedList<Sesion> getSesiones() {
         return sesiones;
     }
     /**
@@ -134,4 +132,21 @@ public class Sala{
         return result;
     }
 
+    public boolean remove(){
+        for (Sesion s : this.sesiones) {
+            s.remove();
+        }
+        return true;
+    }
+
+    public void removeSesion(Sesion sesion) {
+        int i = 0;
+        for (Sesion s : this.sesiones){
+            if (s.equals(sesion)){
+                this.sesiones.remove(i);
+                return;
+            }
+            i++;
+        }
+    }
 }

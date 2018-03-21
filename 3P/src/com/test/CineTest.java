@@ -77,12 +77,41 @@ public class CineTest {
             numTests++;
         }
         totalTests++;
+
         System.out.println("Mostrando la lista de peliculas...");
         cine.showPeliculas();
         System.out.println("Mostrando la lista de sesiones...");
         cine.showSesiones();
         System.out.println("Mostrando la recaudacion...");
         cine.showRecaudacion();
+
+        if(cine.removePelicula(cine.getPelicula("Los Teletubbies", "Magia", "1992"))){
+            System.out.println("Se puede borrar una pelicula y sus sesiones de forma satisfactoria.");
+            numTests++;
+        }
+        totalTests++;
+
+
+        System.out.println("Mostrando la lista de peliculas...");
+        cine.showPeliculas();
+        System.out.println("Mostrando la lista de sesiones...");
+        cine.showSesiones();
+        System.out.println("Mostrando la recaudacion...");
+        cine.showRecaudacion();
+
+        if(cine.removeSala(cine.getSala(2))){
+            System.out.println("Se puede borrar una sala y sus sesiones de forma satisfactoria.");
+            numTests++;
+        }
+        totalTests++;
+
+        System.out.println("Mostrando la lista de peliculas...");
+        cine.showPeliculas();
+        System.out.println("Mostrando la lista de sesiones...");
+        cine.showSesiones();
+        System.out.println("Mostrando la recaudacion...");
+        cine.showRecaudacion();
+
         System.out.println(numTests+"/"+totalTests+" test(s) fueron correctos.");
     }
 }

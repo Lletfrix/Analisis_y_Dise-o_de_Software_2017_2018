@@ -154,24 +154,55 @@ public class Cine {
     }
 
     public Pelicula getPelicula(String titulo, String director, String anno){
-        int i = 0;
+        Pelicula pelicula = new Pelicula(titulo, director, anno, "Sinopsis", Genero.DOCUMENTAL);
         for (Pelicula p : this.listaPeliculas){
-            if(p.equals(this.listaPeliculas.get(i))){
-                return this.listaPeliculas.get(i);
+            if(p.equals(pelicula)){
+                return p;
             }
-            i++;
         }
         return null;
     }
 
     public Sala getSala(int id){
-        int i = 0;
         for (Sala s : this.listaSalas){
-            if(s.getId() == this.listaSalas.get(i).getId()) {
-                return this.listaSalas.get(i);
+            if(s.getId() == id) {
+                return s;
             }
-            i++;
         }
         return null;
+    }
+
+    public boolean removePelicula(Pelicula pelicula){
+        int i=0;
+        if (!this.listaPeliculas.contains(pelicula)){
+            System.out.println("La pelicula no existe");
+            return false;
+        }
+        for (Pelicula p : this.listaPeliculas){
+            if(p.equals(pelicula)){
+                p.remove();
+                this.listaPeliculas.remove(i);
+                return true;
+            }
+            ++i;
+        }
+        return false;
+    }
+
+    public boolean removeSala(Sala sala){
+        int i=0;
+        if (!this.listaSalas.contains(sala)){
+            System.out.println("La sala no existe");
+            return false;
+        }
+        for (Sala s : this.listaSalas){
+            if(s.equals(sala)){
+                sala.remove();
+                this.listaSalas.remove(i);
+                return true;
+            }
+            ++i;
+        }
+        return false;
     }
 }

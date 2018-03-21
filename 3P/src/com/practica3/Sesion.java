@@ -82,6 +82,12 @@ public class Sesion {
         return sala;
     }
 
+    public boolean remove(){
+        this.pelicula.removeSesion(this);
+        this.sala.removeSesion(this);
+        return true;
+    }
+
     @Override
     public String toString() {
         return this.pelicula.toString() + this.sala.toString() + " - Butacas disponibles: " + this.butacasDisponibles + "\nFecha: " + fecha.getTime().toString();

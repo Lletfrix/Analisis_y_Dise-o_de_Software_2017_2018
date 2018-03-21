@@ -7,6 +7,8 @@ package com.practica3;
  */
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Pelicula{
     private String titulo;
@@ -14,7 +16,7 @@ public class Pelicula{
     private String anno;
     private String sinopsis;
     private Genero genero;
-    private ArrayList<Sesion> sesiones;
+    private LinkedList<Sesion> sesiones;
     /**
      * Constructor de la clase Pelicula
      * @param titulo Título de la Pelicula
@@ -29,7 +31,7 @@ public class Pelicula{
         this.anno = anno;
         this.sinopsis = sinopsis;
         this.genero = genero;
-        this.sesiones = new ArrayList<Sesion>();
+        this.sesiones = new LinkedList<Sesion>();
     }
     /**
      * Getter del título de la Pelicula
@@ -146,6 +148,24 @@ public class Pelicula{
             ++i;
         }
         return null;
+    }
+
+    public boolean remove(){
+        for (Sesion s : this.sesiones) {
+            s.remove();
+        }
+        return true;
+    }
+
+    public void removeSesion(Sesion sesion) {
+        int i = 0;
+        for (Sesion s : this.sesiones){
+            if (s.equals(sesion)){
+                this.sesiones.remove(i);
+                return;
+            }
+            i++;
+        }
     }
     /**
      * Sustitución del toString estándar para la clase Película
