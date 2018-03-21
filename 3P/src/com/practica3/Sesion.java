@@ -42,7 +42,7 @@ public class Sesion {
         for (int i = 0; i < this.butacas.size(); i++){
             if (this.butacas.get(i).isFree()){
                 fila = i%this.sala.getNumButacasFila();
-                columna = (int) Math.floor(i/this.sala.getNumButacasColumna());
+                columna = (int) Math.floor(i/this.sala.getNumButacasFila());
                 break;
             }
         }
@@ -53,7 +53,7 @@ public class Sesion {
         if(fila > this.sala.getNumButacasFila() || columna > this.sala.getNumButacasColumna()){
             return false;
         }
-        int index = columna*this.sala.getNumButacasColumna() + fila;
+        int index = columna*this.sala.getNumButacasFila() + fila;
         if (!this.butacas.get(index).isFree()){
             return false;
         }

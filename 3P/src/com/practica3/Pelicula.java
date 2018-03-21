@@ -135,7 +135,12 @@ public class Pelicula{
         fecha.set(Calendar.MINUTE, minutos);
         fecha.set(Calendar.SECOND, 0);
         for (Sesion s : this.sesiones){
-            if(s.getFecha().equals(fecha)){
+            Calendar fechaOriginal = s.getFecha();
+            if (fechaOriginal.get(Calendar.YEAR) == fecha.get(Calendar.YEAR) &&
+                    fechaOriginal.get(Calendar.MONTH) == fecha.get(Calendar.MONTH) &&
+                    fechaOriginal.get(Calendar.DATE) == fecha.get(Calendar.DATE) &&
+                    fechaOriginal.get(Calendar.HOUR) == fecha.get(Calendar.HOUR) &&
+                    fechaOriginal.get(Calendar.MINUTE) == fecha.get(Calendar.MINUTE)){
                 return this.sesiones.get(i);
             }
             ++i;
