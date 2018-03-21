@@ -16,10 +16,11 @@ public class Sesion {
     public Sesion (int anno, int mes, int dia, int hora, int min, Pelicula pelicula, Sala sala) {
         Calendar fecha = Calendar.getInstance();
         fecha.set(Calendar.YEAR, anno);
-        fecha.set(Calendar.MONTH, mes+1);
+        fecha.set(Calendar.MONTH, mes-1);
         fecha.set(Calendar.DAY_OF_MONTH, dia);
         fecha.set(Calendar.HOUR_OF_DAY, hora);
         fecha.set(Calendar.MINUTE, min);
+        fecha.set(Calendar.SECOND, 0);
         this.fecha = fecha;
         this.pelicula = pelicula;
         this.sala = sala;
@@ -81,7 +82,22 @@ public class Sesion {
         return sala;
     }
 
+    @Override
     public String toString() {
-        return this.pelicula.toString() + this.sala.toString() + " - Butacas disponibles: " + this.butacasDisponibles + "\nFecha: " + fecha.getTime().toString() + butacasDisponibles;
+        return this.pelicula.toString() + this.sala.toString() + " - Butacas disponibles: " + this.butacasDisponibles + "\nFecha: " + fecha.getTime().toString();
+    }
+
+    @Override
+    public boolean equals (Object object) {
+        boolean result = false;
+        if (object == null || object.getClass() != getClass()) {
+            result = false;
+        } else {
+            Sesion s = (Sesion) object;
+            if (this.fecha.equals(s.fecha) && this.pelicula.equals(s.pelicula) && this.sala.equals(s.sala)) {
+                result = true;
+            }
+        }
+        return result;
     }
 }

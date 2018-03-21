@@ -46,7 +46,7 @@ public class Butaca {
     }
     /**
      * Setter del estado de la butaca
-     * @param free Booleano 
+     * @param free Booleano del estado en el que queremos poner la butaca(V-Libre/F-Ocupado)
      *
      */
     public void setFree(boolean free) {

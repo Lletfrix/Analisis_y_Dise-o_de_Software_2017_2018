@@ -1,6 +1,9 @@
 package com.test;
 
-import com.practica3.*;
+import com.practica3.Genero;
+import com.practica3.Pelicula;
+import com.practica3.Sala;
+import com.practica3.Sesion;
 public class SesionTest {
 
     public static void main(String[] args){
@@ -15,7 +18,7 @@ public class SesionTest {
         sesion = new Sesion(2018, 3, 27, 23, 30, pelicula, sala);
 
         if(sesion.actualizarButacasVendidas()){
-            System.out.println("Se pueden asignar una butaca vendida, reduciendo en 1 el numero de butacas disponibles");
+            System.out.println("Se puede asignar una butaca vendida, reduciendo en 1 el numero de butacas disponibles");
             numTests++;
         }
         totalTests++;
@@ -27,7 +30,7 @@ public class SesionTest {
         }
         totalTests++;
 
-        if(!sesion.actualizarButacasVendidas(0,0)){
+        if(!sesion.actualizarButacasVendidas(7,7)){
             System.out.println("No se puede asignar una butaca ya asignada.");
             numTests++;
         }
