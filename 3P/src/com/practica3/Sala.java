@@ -1,12 +1,13 @@
 package com.practica3;
+
+import java.util.*;
+
 /**
  * Clase Sala implementada para cumplir la funcionalidad especificada en la
  * Práctica 3 de ADSOF
  * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
-import java.util.*;
-
 public class Sala{
     private static int idSerial = 1;
     private final int id;

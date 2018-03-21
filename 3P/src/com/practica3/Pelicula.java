@@ -1,15 +1,16 @@
 package com.practica3;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 /**
  * Clase Pelicula implementada para cumplir la funcionalidad especificada en la
  * Práctica 3 de ADSOF
  * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class Pelicula{
     private String titulo;
     private String director;
@@ -149,14 +150,20 @@ public class Pelicula{
         }
         return null;
     }
-
+    /**
+     * Método para retirar todas las Sesiones de una Película
+     * @return Booleano que representa el éxito o fallo de la operación
+     */
     public boolean remove(){
         for (Sesion s : this.sesiones) {
             s.remove();
         }
         return true;
     }
-
+    /**
+     * Método para retirar una Sesión concreta de una Película
+     * @param sesion Sesión a eliminar
+     */
     public void removeSesion(Sesion sesion) {
         int i = 0;
         for (Sesion s : this.sesiones){

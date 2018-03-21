@@ -152,7 +152,13 @@ public class Cine {
             pelicula.showSesiones();
         }
     }
-
+    /**
+     * Getter de una Película concreta del Cine, si existe en el Cine
+     * @param titulo Título de la Película
+     * @param director Director de la Película
+     * @param anno Año de la Película
+     * @return Película si la encuentra, en caso contrario null
+     */
     public Pelicula getPelicula(String titulo, String director, String anno){
         Pelicula pelicula = new Pelicula(titulo, director, anno, "Sinopsis", Genero.DOCUMENTAL);
         for (Pelicula p : this.listaPeliculas){
@@ -162,7 +168,11 @@ public class Cine {
         }
         return null;
     }
-
+    /**
+     * Getter de una Sala concreta del Cine, si existe en el Cine
+     * @param id id de la Sala que buscamos
+     * @return Sala si la encuentra, en caso contrario null
+     */
     public Sala getSala(int id){
         for (Sala s : this.listaSalas){
             if(s.getId() == id) {
@@ -171,7 +181,11 @@ public class Cine {
         }
         return null;
     }
-
+    /**
+     * Método para eliminar una Película concreta del Cine
+     * @param pelicula Película a eliminar del Cine
+     * @return Booleano que representa el éxito o fracaso de la operación
+     */
     public boolean removePelicula(Pelicula pelicula){
         int i=0;
         if (!this.listaPeliculas.contains(pelicula)){
@@ -188,7 +202,11 @@ public class Cine {
         }
         return false;
     }
-
+    /**
+     * Método para eliminar una Sala concreta del Cine
+     * @param sala Sala a eliminar del Cine
+     * @return Booleano que representa el éxito o fracaso de la operación
+     */
     public boolean removeSala(Sala sala){
         int i=0;
         if (!this.listaSalas.contains(sala)){
