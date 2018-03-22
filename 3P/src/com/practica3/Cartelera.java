@@ -11,6 +11,13 @@ package com.practica3;
         this.peliculas = new ArrayList<Pelicula>();
     }
     /**
+     * Getter de la lista de Películas de la Cartelera
+     * @return Lista de Películas de la Cartelera
+     */
+    public List<Pelicula> getPeliculas(){
+        return this.peliculas;
+    }
+    /**
      * Método para añadir una Película a la lista de Películas de la Cartelera dado un objeto Película
      * @param p Película a añadir a la lista
      * @return Película añadida a la Cartelera
