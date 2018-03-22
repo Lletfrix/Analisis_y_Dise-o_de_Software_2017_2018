@@ -1,4 +1,10 @@
-package com.practica3;
+package GR2202_RafaelSergio.opcional;
+import GR2202_RafaelSergio.practica3.Genero;
+import GR2202_RafaelSergio.practica3.Pelicula;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase Cartelera implementada para cumplir la funcionalidad especificada en la
  * Práctica 3 de ADSOF
@@ -37,7 +43,7 @@ package com.practica3;
      */
     public Pelicula addPelicula(String titulo, String director, String anno, String sinopsis, Genero genero){
         Pelicula p = new Pelicula(titulo, director, anno, sinopsis, genero);
-        if(this.listaPeliculas.contains(p)){
+        if(this.peliculas.contains(p)){
             return null;
         }
         return this.addPelicula(p);
@@ -49,14 +55,14 @@ package com.practica3;
      */
     public boolean removePelicula(Pelicula pelicula){
         int i=0;
-        if (!this.listaPeliculas.contains(pelicula)){
+        if (!this.peliculas.contains(pelicula)){
             System.out.println("La pelicula no existe");
             return false;
         }
-        for (Pelicula p : this.listaPeliculas){
+        for (Pelicula p : this.peliculas){
             if(p.equals(pelicula)){
                 p.remove();
-                this.listaPeliculas.remove(i);
+                this.peliculas.remove(i);
                 return true;
             }
             ++i;
@@ -66,9 +72,9 @@ package com.practica3;
     /**
      * Método para mostrar los datos de todas las Películas que hay en Cartelera
      */
-    public String showPeliculas(){
-        String res = '';
-        for (Pelicula pelicula : this.listaPeliculas) {
+    public void showPeliculas(){
+        //String res = "";
+        for (Pelicula pelicula : this.peliculas) {
             System.out.println(pelicula);
         }
     }

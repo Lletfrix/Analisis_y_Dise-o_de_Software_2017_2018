@@ -1,9 +1,10 @@
-package com.test;
+package GR2202_RafaelSergio.test;
 
-import com.practica3.Genero;
-import com.practica3.Pelicula;
-import com.practica3.Sala;
-import com.practica3.Sesion;
+import GR2202_RafaelSergio.practica3.Genero;
+import GR2202_RafaelSergio.practica3.Pelicula;
+import GR2202_RafaelSergio.practica3.Sala;
+import GR2202_RafaelSergio.practica3.Sesion;
+
 public class SesionTest {
 
     public static void main(String[] args){

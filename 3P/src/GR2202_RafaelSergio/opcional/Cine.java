@@ -1,7 +1,14 @@
-package com.practica3;
+package GR2202_RafaelSergio.opcional;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import GR2202_RafaelSergio.practica3.Pelicula;
+import GR2202_RafaelSergio.practica3.Sala;
+import GR2202_RafaelSergio.practica3.Entrada;
+import GR2202_RafaelSergio.practica3.EntradaDiaEspectador;
+import GR2202_RafaelSergio.practica3.Genero;
+import GR2202_RafaelSergio.practica3.Sesion;
 
 /**
  * Clase Cine implementada para cumplir la funcionalidad especificada en la
@@ -14,7 +21,7 @@ public class Cine {
     private String direccion;
     private ArrayList<Sala> listaSalas;
     private ArrayList<Entrada> listaEntradas;
-    private Cartelera cartelera
+    private Cartelera cartelera;
     /**
     * Constructor de la clase Cine
     * @param nombre Nombre del Cine
@@ -37,7 +44,7 @@ public class Cine {
      * @return Película añadida al Cine
      */
     public Pelicula addPelicula(String titulo, String director, String anno, String sinopsis, Genero genero){
-        return this.addPelicula(String titulo, String director, String anno, String sinopsis, Genero genero);
+        return this.cartelera.addPelicula(titulo, director, anno, sinopsis, genero);
     }
     /**
      * Método para añadir una Película a la lista de Películas del Cine dado un objeto Película

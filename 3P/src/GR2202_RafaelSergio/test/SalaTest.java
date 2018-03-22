@@ -1,5 +1,8 @@
-package com.test;
-import com.practica3.*;
+package GR2202_RafaelSergio.test;
+import GR2202_RafaelSergio.practica3.Genero;
+import GR2202_RafaelSergio.practica3.Pelicula;
+import GR2202_RafaelSergio.practica3.Sala;
+import GR2202_RafaelSergio.practica3.Sesion;
 
 public class SalaTest {
 

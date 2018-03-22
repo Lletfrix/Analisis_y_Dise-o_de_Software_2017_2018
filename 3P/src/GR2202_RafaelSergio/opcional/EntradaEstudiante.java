@@ -1,11 +1,13 @@
-package com.practica3;
+package GR2202_RafaelSergio.opcional;
+import GR2202_RafaelSergio.practica3.Entrada;
+
 /**
  * Clase EntradaEstudiante implementada para cumplir la funcionalidad especificada en la
  * Práctica 3 de ADSOF
  * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
-public class EntradaEstudiante extends Entrada{
+public class EntradaEstudiante extends Entrada {
     private static double descuentoGlobal = 0.8;
     private double descuento;
     /**

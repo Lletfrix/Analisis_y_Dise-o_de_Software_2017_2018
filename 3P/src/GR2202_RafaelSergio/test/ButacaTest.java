@@ -1,6 +1,6 @@
-package com.test;
+package GR2202_RafaelSergio.test;
 
-import com.practica3.Butaca;
+import GR2202_RafaelSergio.practica3.Butaca;
 
 public class ButacaTest {
 

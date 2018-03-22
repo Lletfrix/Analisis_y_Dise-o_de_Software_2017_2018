@@ -1,8 +1,6 @@
-package com.practica3;
+package GR2202_RafaelSergio.practica3;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**

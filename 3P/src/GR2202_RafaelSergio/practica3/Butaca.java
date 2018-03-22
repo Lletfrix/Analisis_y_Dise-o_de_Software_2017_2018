@@ -1,4 +1,4 @@
-package com.practica3;
+package GR2202_RafaelSergio.practica3;
 /**
  * Clase Butaca implementada para dotar de algo más de realismo a las butacas de
  * la sala, dándoles una fila y una columna concretas.

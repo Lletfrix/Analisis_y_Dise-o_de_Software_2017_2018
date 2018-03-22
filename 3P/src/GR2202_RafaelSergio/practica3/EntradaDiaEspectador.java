@@ -1,4 +1,4 @@
-package com.practica3;
+package GR2202_RafaelSergio.practica3;
 /**
  * Clase EntradaDiaEspectador implementada para cumplir la funcionalidad especificada en la
  * Práctica 3 de ADSOF
