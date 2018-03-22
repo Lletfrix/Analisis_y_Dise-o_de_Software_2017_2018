@@ -1,0 +1,125 @@
+@startuml
+skinparam {
+  classAttributeIconSize 0
+  ClassBorderColor Black
+  ClassBackgroundColor White
+  ClassFontStyle bold
+  ClassFontName Courier
+  ClassAttributeFontName Courier
+  ArrowColor Black
+  Shadowing false
+}
+
+title Diagrama de clases de la aplicación Cine
+
+hide enum methods
+
+class Cine << (S,#FF7700) >> {
+    - nombre : String
+    - direccion : String
+
+    + addPelicula(String titulo, String director, String anno, String sinopsis, String genero) : void
+    + addSala(int numButacas) : void
+    + addSesion(Pelicula pelicula, Sala sala, Calendar fecha) : void
+    + venderEntradas(Sesion sesion, int numEntradas, TipoEntrada tipo) : boolean
+    + showPeliculas() : void
+    + showRecaudacion() : void
+    + showSesiones() : void
+}
+
+class Cartelera {
+    + getPeliculas() : Pelicula[]
+    + addPelicula(Pelicula p) : Pelicula
+    + addPelicula(String titulo, String director, String anno, String sinopsis, Genero genero) : Pelicula
+    + removePelicula(Pelicula p) : boolean
+    + showPeliculas() : void
+}
+
+class Sesion {
+    - fecha : Calendar
+    - butacasDisponibles : int
+
+    + actuaizarButacasVendidas() : boolean
+}
+
+class Butaca{
+    - fila : int
+    - columna : int
+    - free : boolean
+}
+
+class Pelicula{
+    - titulo : String
+    - director : String
+    - anno : String
+    - sinopsis : String
+    - genero : Genero
+
+    + toString() : String
+}
+
+class Sala{
+    - id : int
+    - numButacasFila : int
+    - numButacasColumna : int
+
+    - isSalaDisponible(Calendar fecha) : boolean
+    + calcularButacas() : int
+    + addSesion(Sesion sesion) : boolean
+}
+
+class Entrada{
+    - precio : float
+
+    + getPrecio() : float
+}
+
+class EntradaEspectador extends Entrada{
+    - descuento : float
+
+    + getPrecio() : float
+}
+
+class EntradaPersonaMayor extends Entrada{
+    - descuento : float
+
+    + getPrecio() : float
+}
+
+class EntradaFiesta extends Entrada{
+    - descuento : float
+
+    + getPrecio() : float
+}
+
+enum Genero {
+    ACCION,
+    BELICA,
+    WESTERN,
+    THRILLER,
+    TERROR,
+    SUSPENSE,
+    POLICIAL,
+    MUSICAL,
+    COMEDIA,
+    CIENCIAFICCION,
+    DOCUMENTAL;
+}
+
+enum TipoEntrada{
+    DIAESPECTADOR,
+    PERSONAMAYOR,
+    FIESTA,
+    ESTANDAR;
+}
+
+Cine *--> Sala
+Cine *--> Entrada
+Cine "1" ---> "1" Cartelera
+Cartelera o--> Pelicula
+
+Pelicula "1" --- "0..*" Sesion
+Sala "1" --- "0..*" Sesion
+Sesion *--> Butaca
+
+@enduml

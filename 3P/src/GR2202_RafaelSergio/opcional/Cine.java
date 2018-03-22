@@ -108,16 +108,25 @@ public class Cine {
      * Método para vender cierto número de Entradas para cierta Sesión del Cine
      * @param sesion Sesión de la cual se quieren comprar Entradas
      * @param numEntradas Número de entradas que queremos comprar
+     * @param tipo Tipo de entrada a vender.
      * @return Booleano indicando si la operación ha ido bien o no
      */
-    public boolean venderEntradas(Sesion sesion, int numEntradas){
+    public boolean venderEntradas(Sesion sesion, int numEntradas, TipoEntrada tipo){
         int i;
         if(sesion.getButacasDisponibles() < numEntradas){
             return false;
         }
-        if(sesion.getFecha().get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+        if(tipo == TipoEntrada.DIAESPECTADOR){
             for (i = 0; i < numEntradas; ++i) {
                 listaEntradas.add(new EntradaDiaEspectador());
+            }
+        }else if(tipo == TipoEntrada.PERSONAMAYOR){
+            for (i = 0; i < numEntradas; ++i) {
+                listaEntradas.add(new EntradaPersonaMayor());
+            }
+        }else if(tipo == TipoEntrada.FIESTA){
+            for (i = 0; i < numEntradas; ++i) {
+                listaEntradas.add(new EntradaFiesta());
             }
         }else{
             for (i = 0; i < numEntradas; ++i) {
