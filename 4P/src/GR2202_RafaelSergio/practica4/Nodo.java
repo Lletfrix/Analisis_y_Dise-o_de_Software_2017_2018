@@ -5,21 +5,23 @@ import java.util.List;
 public abstract class Nodo {
     private String simbolo;
     private List<INodo> descendientes;
-    private int maxDesc;
+    private int maxDesc;    
 
+    public Nodo(String simbolo, int maxDesc){
+        this.simbolo = simbolo;
+        this.maxDesc = maxDesc;
+    }
     public String getRaiz() {
         return simbolo;
     }
     public List<INodo> getDescendientes() {
         return descendientes;
     }
-    public void incluirDescendiente(INodo nodo) {
+    public void incluirDescendiente(INodo nodo) throws IllegalArgumentException{
         if (this.descendientes.size() >= this.maxDesc) {
-            //Exception
-            return;
+            throw new IllegalArgumentException();
         }
         this.descendientes.add(nodo);
-        this.maxDesc = this.maxDesc + 1;
         return;
     }
     public abstract double calcular();
@@ -28,5 +30,4 @@ public abstract class Nodo {
         n = (INodo) this.clone();
         return n;
     }
-
 }
