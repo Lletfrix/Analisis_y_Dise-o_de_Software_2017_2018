@@ -7,8 +7,8 @@ public class TerminalAritmetico extends Terminal {
         super(simbolo);
     }
 
-    public void setValor(double valor){
-        this.valor = valor;
+    public static void setValor(double v){
+        valor = v;
     }
     @Override
     public double calcular() {

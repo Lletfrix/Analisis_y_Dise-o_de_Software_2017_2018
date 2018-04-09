@@ -6,4 +6,14 @@ public  abstract  class Terminal extends Nodo{
         super(simbolo, 1);
     }
     public abstract double calcular();
+    
+    @Override
+    public String toString() {
+    	return this.getRaiz();
+    }
+    
+    @Override
+    public int getNumeroNodos() {
+    	return 1;
+    }
 }

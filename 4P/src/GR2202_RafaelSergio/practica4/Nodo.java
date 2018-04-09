@@ -1,8 +1,9 @@
 package GR2202_RafaelSergio.practica4;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Nodo {
+public abstract class Nodo implements INodo{
     private String simbolo;
     private List<INodo> descendientes;
     private int maxDesc;    
@@ -10,6 +11,7 @@ public abstract class Nodo {
     public Nodo(String simbolo, int maxDesc){
         this.simbolo = simbolo;
         this.maxDesc = maxDesc;
+        this.descendientes = new ArrayList<>();
     }
     public String getRaiz() {
         return simbolo;
