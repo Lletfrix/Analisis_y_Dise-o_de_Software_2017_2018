@@ -55,6 +55,7 @@ public class DominioAritmetico implements IDominio{
 				tot = tot + 1;
 			}
 		}
+		individuo.setFitness(tot);
 		return tot;
 	}
 	
