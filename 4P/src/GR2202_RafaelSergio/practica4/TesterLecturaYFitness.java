@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class TesterLecturaYFitness {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, IllegalArgumentException, CloneNotSupportedException {
 		IDominio domAritm;
 		double fitness;
 

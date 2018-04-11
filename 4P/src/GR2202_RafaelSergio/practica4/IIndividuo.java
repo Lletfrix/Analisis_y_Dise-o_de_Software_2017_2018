@@ -11,4 +11,6 @@ public interface IIndividuo {
     public double calcularExpresion();
     public int getNumeroNodos();
     public void writeIndividuo();
+    public void etiquetaNodos();
+    public INodo getNodo(int indice);
 }

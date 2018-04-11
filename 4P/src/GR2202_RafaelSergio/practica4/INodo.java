@@ -5,8 +5,14 @@ import java.util.List;
 public interface INodo {
     public String getRaiz();
     public List<INodo> getDescendientes();
-    public void incluirDescendiente(INodo nodo);
+    public int getEtiqueta();
+    public void setEtiqueta(int etiqueta);
+    public INodo getPadre();
+    public void setPadre(INodo padre);
+    public void incluirDescendiente(INodo nodo) throws IllegalArgumentException, CloneNotSupportedException;
     public double calcular();
     public INodo copy() throws CloneNotSupportedException;
     public int getNumeroNodos();
+    public int etiquetaNodo(int inicio);
+    public INodo getNodo(int indice);
 }

@@ -43,4 +43,13 @@ public class Individuo implements IIndividuo{
 		System.out.println("Expresión: " + this.getExpresion());
 		
 	}
+	@Override
+	public void etiquetaNodos() {
+		this.getExpresion().etiquetaNodo(1);
+	}
+	@Override
+	public INodo getNodo(int indice) {
+		return this.getExpresion().getNodo(indice);
+	}
+	
 }
