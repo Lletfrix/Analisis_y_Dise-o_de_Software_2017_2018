@@ -15,4 +15,16 @@ public class FuncionMultiplicacion extends Funcion {
         return total;
 	}
 
+	@Override
+    public FuncionMultiplicacion clone() throws  CloneNotSupportedException{
+        FuncionMultiplicacion func = new FuncionMultiplicacion(this.getRaiz(), this.getMaxDesc());
+        if(this.getDescendientes().size()==0){
+            return func;
+        }
+        for (INodo n: this.getDescendientes()) {
+            func.incluirDescendiente(n.copy());
+        }
+        return func;
+    }
+
 }

@@ -14,4 +14,16 @@ public class TerminalAritmetico extends Terminal {
     public double calcular() {
         return valor;
     }
+
+    @Override
+    public TerminalAritmetico clone() throws  CloneNotSupportedException{
+        TerminalAritmetico termArim = new TerminalAritmetico(this.getRaiz());
+        if(this.getDescendientes().size()==0){
+            return termArim;
+        }
+        for (INodo n: this.getDescendientes()) {
+            termArim.incluirDescendiente(n.copy());
+        }
+        return termArim;
+    }
 }

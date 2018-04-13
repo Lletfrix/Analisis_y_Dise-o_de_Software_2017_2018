@@ -40,12 +40,12 @@ public class Individuo implements IIndividuo{
 	}
 	@Override
 	public void writeIndividuo() {
-		System.out.println("Expresión: " + this.getExpresion());
+		System.out.println("Expresion: " + this.getExpresion());
 		
 	}
 	@Override
 	public void etiquetaNodos() {
-		this.getExpresion().etiquetaNodo(1);
+		this.getExpresion().etiquetaNodo(0);
 	}
 	@Override
 	public INodo getNodo(int indice) {

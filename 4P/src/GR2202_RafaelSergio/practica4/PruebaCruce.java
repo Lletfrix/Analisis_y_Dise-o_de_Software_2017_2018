@@ -9,24 +9,24 @@ public class PruebaCruce {
 		int aleat2 = (int) (Math.random() * i2.getNumeroNodos());
 		INodo aux1, aux2, paux1, paux2;
 		List<IIndividuo> lista = new ArrayList<>();
-		if(aleat1 == 1 && aleat2 == 1) {
+		if(aleat1 == 0 && aleat2 == 0) {
 			throw new CruceNuloException();
 		}
 		System.out.println("Punto de cruce del progenitor 1: " + aleat1);
 		System.out.println("Punto de cruce del progenitor 2: " + aleat2);
 		aux1 = i1.getNodo(aleat1);
 		aux2 = i2.getNodo(aleat2);
-		paux1 = aux1.getPadre();
-		paux2 = aux2.getPadre();
-		if(aleat1 == 1) {
+		if(aleat1 == 0) {
+            aux1.setPadre(aux2.getPadre());
 			i1.setExpresion(aux2);
-			aux1.setPadre(paux2);
 		}
-		else if(aleat2 == 1) {
+		else if(aleat2 == 0) {
+            aux2.setPadre(aux1.getPadre());
 			i2.setExpresion(aux1);
-			aux2.setPadre(paux1);
 		}
 		else {
+            paux1 = aux1.getPadre();
+            paux2 = aux2.getPadre();
 			aux1.setPadre(paux2);
 			aux2.setPadre(paux1);
 		}

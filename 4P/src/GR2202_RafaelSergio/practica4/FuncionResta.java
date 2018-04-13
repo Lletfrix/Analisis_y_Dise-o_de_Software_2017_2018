@@ -13,4 +13,16 @@ public class FuncionResta extends Funcion {
         }
         return total;
     }
+
+    @Override
+    public FuncionResta clone() throws  CloneNotSupportedException{
+        FuncionResta func = new FuncionResta(this.getRaiz(), this.getMaxDesc());
+        if(this.getDescendientes().size()==0){
+            return func;
+        }
+        for (INodo n: this.getDescendientes()) {
+            func.incluirDescendiente(n.copy());
+        }
+        return func;
+    }
 }

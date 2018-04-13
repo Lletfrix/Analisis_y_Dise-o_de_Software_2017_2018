@@ -5,6 +5,7 @@ import java.util.List;
 public interface INodo {
     public String getRaiz();
     public List<INodo> getDescendientes();
+    public int getMaxDesc();
     public int getEtiqueta();
     public void setEtiqueta(int etiqueta);
     public INodo getPadre();
