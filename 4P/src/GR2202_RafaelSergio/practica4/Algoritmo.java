@@ -32,9 +32,10 @@ public class Algoritmo {
     }
 
     private INodo recursionPoblacion() throws CloneNotSupportedException {
-        INodo ncopia;
+        INodo ncopia = null;
         if(profundidadMaxima == profundidad){
-
+        	int aleat = (int)(Math.random() * terminales.size());
+        	ncopia = terminales.get(aleat).copy();
         }else{
             int aleat = (int) (Math.random() * funciones.size());
             ncopia = funciones.get(aleat).copy();

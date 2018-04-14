@@ -38,7 +38,7 @@ public abstract class Nodo implements INodo, Cloneable {
         return this.padre;
     }
 
-    public void setPadre(INodo padre) {
+    public void setPadre(INodo padre, int ind) {
         if (this.padre != null) {
             List<INodo> l = this.padre.getDescendientes();
             for (INodo n : l) {
@@ -50,10 +50,31 @@ public abstract class Nodo implements INodo, Cloneable {
         }
         this.padre = padre;
         if (padre != null) {
-            padre.getDescendientes().add(this);
+            padre.getDescendientes().add(ind, this);
         }
     }
-
+    
+    public void setPadre(INodo padre) {
+        setPadre(padre, padre.getDescendientes().size());
+    }
+    
+    public int getIndex(INodo nodo) {
+    	int ind = -1;
+    	if (nodo == this) {
+    		return -2;
+    	}
+    	for(INodo n: this.getDescendientes()) {
+    		ind = n.getIndex(nodo);
+    		if(ind == -2) {
+    			return this.getDescendientes().indexOf(nodo);
+    		}
+    		if(ind != -1) {
+    			return ind;
+    		}
+    	}
+    	return ind;
+    }
+    
     public void incluirDescendiente(INodo nodo) throws IllegalArgumentException, CloneNotSupportedException {
         if (this.descendientes.size() >= this.maxDesc) {
             throw new IllegalArgumentException();
