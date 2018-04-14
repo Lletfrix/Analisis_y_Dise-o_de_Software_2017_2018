@@ -16,6 +16,7 @@ public interface INodo {
     public int getNumeroNodos();
     public int etiquetaNodo(int inicio);
     public INodo getNodo(int indice);
-	public int getIndex(INodo nodo);
+	public int getIndex(int etiqueta);
 	public void setPadre(INodo padre, int ind);
+	public void detachPadre();
 }

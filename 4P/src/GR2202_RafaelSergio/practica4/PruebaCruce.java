@@ -18,20 +18,22 @@ public class PruebaCruce {
 		aux1 = i1.getNodo(aleat1);
 		aux2 = i2.getNodo(aleat2);
 		if(aleat1 == 0) {
-            aux1.setPadre(aux2.getPadre(), aux2.getPadre().getIndex(aux2));
+            aux1.setPadre(aux2.getPadre(), aux2.getPadre().getIndex(aleat2));
+            aux2.detachPadre();
 			i1.setExpresion(aux2);
 		}
 		else if(aleat2 == 0) {
-            aux2.setPadre(aux1.getPadre(), aux1.getPadre().getIndex(aux1));
+            aux2.setPadre(aux1.getPadre(), aux1.getPadre().getIndex(aleat1));
+            aux1.detachPadre();
 			i2.setExpresion(aux1);
 		}
 		else {
             paux1 = aux1.getPadre();
             paux2 = aux2.getPadre();
-            ind1 = paux1.getIndex(aux1);
-            ind2 = paux2.getIndex(aux2);
-			aux1.setPadre(paux2, ind1);
-			aux2.setPadre(paux1, ind2);
+            ind1 = paux1.getIndex(aleat1);
+            ind2 = paux2.getIndex(aleat2);
+			aux1.setPadre(paux2, ind2);
+			aux2.setPadre(paux1, ind1);
 		}
 		lista.add(i1);
 		lista.add(i2);

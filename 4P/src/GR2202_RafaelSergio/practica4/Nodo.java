@@ -55,10 +55,14 @@ public abstract class Nodo implements INodo, Cloneable {
     }
     
     public void setPadre(INodo padre) {
+    	if(padre == null) {
+    		this.padre =null;
+    		return;
+    	}
         setPadre(padre, padre.getDescendientes().size());
     }
     
-    public int getIndex(INodo nodo) {
+    /*public int getIndex(INodo nodo) {
     	int ind = -1;
     	if (nodo == this) {
     		return -2;
@@ -73,6 +77,17 @@ public abstract class Nodo implements INodo, Cloneable {
     		}
     	}
     	return ind;
+    }*/
+    
+    public int getIndex(int etiqueta) {
+    	int ind = -1;
+    	for(INodo n: this.getDescendientes()) {
+    		ind++;
+    		if(n.getEtiqueta() == etiqueta) {
+    			return ind; 
+    		}
+    	}
+    	return -1;
     }
     
     public void incluirDescendiente(INodo nodo) throws IllegalArgumentException, CloneNotSupportedException {
@@ -123,6 +138,11 @@ public abstract class Nodo implements INodo, Cloneable {
 
     }
 
+    
+    public void detachPadre() {
+    	this.getPadre().getDescendientes().remove(this);
+    	this.setPadre(null);
+    }
 
     public int getMaxDesc() {
         return maxDesc;
