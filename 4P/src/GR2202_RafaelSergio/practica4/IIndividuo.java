@@ -2,7 +2,7 @@ package GR2202_RafaelSergio.practica4;
 
 import java.util.List;
 
-public interface IIndividuo {
+public interface IIndividuo extends Comparable<IIndividuo>{
     public INodo getExpresion();
     public void setExpresion(INodo expresion);
     public double getFitness();

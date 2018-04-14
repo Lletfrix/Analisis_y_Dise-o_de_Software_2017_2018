@@ -11,6 +11,8 @@ import java.util.TreeMap;
 public class DominioAritmetico implements IDominio{
 	private Map<Double, Double> vp;
 	private double tol;
+	private List<Terminal> terminales;
+	private List<Funcion> funciones;
 	
 	public DominioAritmetico(double tol) {
 		this.tol = tol;
@@ -18,15 +20,35 @@ public class DominioAritmetico implements IDominio{
 	
 	@Override
 	public List<Terminal> definirConjuntoTerminales(String... terminales) {
-		// TODO Auto-generated method stub
-		return null;
+		this.terminales.add(new TerminalAritmetico(terminales[0]));
+		return this.terminales;
 	}
 
 	@Override
 	public List<Funcion> definirConjuntoFunciones(int[] argumentos, String... funciones)
 			throws ArgsDistintosFuncionesException {
-		// TODO Auto-generated method stub
-		return null;
+		int cont = 0;
+		for(String s: funciones) {
+			if(s.equals("+")) {
+				if(argumentos[cont] != 2) {
+					throw new ArgsDistintosFuncionesException();
+				}
+				this.funciones.add(new FuncionSuma(s, argumentos[cont]));
+			}
+			if(s.equals("-")) {
+				if(argumentos[cont] != 2) {
+					throw new ArgsDistintosFuncionesException();
+				}
+				this.funciones.add(new FuncionResta(s, argumentos[cont]));
+			}
+			if(s.equals("*")) {
+				if(argumentos[cont] != 2) {
+					throw new ArgsDistintosFuncionesException();
+				}
+				this.funciones.add(new FuncionMultiplicacion(s, argumentos[cont]));
+			}
+		}
+		return this.funciones;
 	}
 
 	@Override
@@ -43,6 +65,14 @@ public class DominioAritmetico implements IDominio{
 		}
 	}
 
+	public List<Terminal> getTerminales(){
+		return this.terminales;
+	}
+	
+	public List<Funcion> getFunciones(){
+		return this.funciones;
+	}
+	
 	@Override
 	public double calcularFitness(IIndividuo individuo) {
 		double aux;

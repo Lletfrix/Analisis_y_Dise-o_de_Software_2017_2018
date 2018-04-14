@@ -51,5 +51,15 @@ public class Individuo implements IIndividuo{
 	public INodo getNodo(int indice) {
 		return this.getExpresion().getNodo(indice);
 	}
+	@Override
+	public int compareTo(IIndividuo indiv) {
+		if(this.getFitness() < indiv.getFitness()) {
+			return -1;
+		}
+		else if(this.getFitness() > indiv.getFitness()) {
+			return 1;
+		}
+		return 0;
+	}
 	
 }

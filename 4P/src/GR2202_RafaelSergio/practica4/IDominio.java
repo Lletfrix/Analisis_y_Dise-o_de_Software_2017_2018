@@ -9,4 +9,6 @@ public interface IDominio {
 	public List<Funcion> definirConjuntoFunciones(int[] argumentos, String... funciones) throws ArgsDistintosFuncionesException;
 	public void definirValoresPrueba(String ficheroDatos) throws FileNotFoundException, IOException;
 	public double calcularFitness(IIndividuo individuo);
+	public List<Funcion> getFunciones();
+	public List<Terminal> getTerminales();
 } 
