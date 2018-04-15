@@ -2,12 +2,14 @@ package GR2202_RafaelSergio.practica4;
 
 import java.util.List;
 
+/**
+ * Clase abstracta que implementa algunas de las funciones generales de un Individuo cualquiera
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class Individuo implements IIndividuo{
 	private INodo expresion;
 	private double fitness;
-	
-	public Individuo() {
-	}
 	
 	@Override
 	public INodo getExpresion() {
@@ -24,11 +26,6 @@ public class Individuo implements IIndividuo{
 	@Override
 	public void setFitness(double fitness) {
 		this.fitness = fitness;
-	}
-	@Override
-	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Funcion> funciones) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public double calcularExpresion() {

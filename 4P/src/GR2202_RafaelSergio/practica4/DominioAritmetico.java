@@ -1,5 +1,6 @@
 package GR2202_RafaelSergio.practica4;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,12 +10,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Dominio que nos permitirá trabajar con Terminales y Funciones del campo de la
+ * aritmética y los números reales.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class DominioAritmetico implements IDominio{
 	private Map<Double, Double> vp;
 	private double tol;
 	private List<Terminal> terminales;
 	private List<Funcion> funciones;
 	
+	/**
+	 * Constructor de DominioAritmetico
+	 * @param tol tolerancia del valor obtenido con respecto al valor real
+	 */
 	public DominioAritmetico(double tol) {
 		this.terminales = new ArrayList<Terminal>();
 		this.funciones = new ArrayList<Funcion>();
@@ -67,11 +78,13 @@ public class DominioAritmetico implements IDominio{
 			vp.put(Double.parseDouble(tokens[0]), Double.parseDouble(tokens[1]));
 		}
 	}
-
+	
+	@Override
 	public List<Terminal> getTerminales(){
 		return this.terminales;
 	}
 	
+	@Override
 	public List<Funcion> getFunciones(){
 		return this.funciones;
 	}
@@ -92,7 +105,7 @@ public class DominioAritmetico implements IDominio{
 		return tot;
 	}
 
-
+	@Override
 	public Map<Double, Double> getVp() {
 		return vp;
 	}

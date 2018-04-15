@@ -3,6 +3,11 @@ package GR2202_RafaelSergio.practica4;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase abstracta que implementa algunas funciones generales de un Nodo cualquiera
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public abstract class Nodo implements INodo, Cloneable {
     private String simbolo;
     private INodo padre;
@@ -11,33 +16,44 @@ public abstract class Nodo implements INodo, Cloneable {
     private int maxDesc;
     private int etiqueta;
 
+    /**
+     * Constructor auxiliar de los Nodos
+     * @param simbolo Símbolo del Nodo
+     * @param maxDesc Máximo número de descendientes
+     */
     public Nodo(String simbolo, int maxDesc) {
         this.padre = null;
         this.simbolo = simbolo;
         this.maxDesc = maxDesc;
         this.descendientes = new ArrayList<>();
     }
-
+    
+    @Override
     public String getRaiz() {
         return simbolo;
     }
-
+    
+    @Override
     public List<INodo> getDescendientes() {
         return descendientes;
     }
-
+    
+    @Override
     public int getEtiqueta() {
         return this.etiqueta;
     }
-
+    
+    @Override
     public void setEtiqueta(int etiqueta) {
         this.etiqueta = etiqueta;
     }
-
+    
+    @Override
     public INodo getPadre() {
         return this.padre;
     }
 
+    @Override
     public void setPadre(INodo padre, int ind) {
         if (this.padre != null) {
             List<INodo> l = this.padre.getDescendientes();
@@ -54,6 +70,7 @@ public abstract class Nodo implements INodo, Cloneable {
         }
     }
     
+    @Override
     public void setPadre(INodo padre) {
     	if(padre == null) {
     		this.padre =null;
@@ -62,23 +79,7 @@ public abstract class Nodo implements INodo, Cloneable {
         setPadre(padre, padre.getDescendientes().size());
     }
     
-    /*public int getIndex(INodo nodo) {
-    	int ind = -1;
-    	if (nodo == this) {
-    		return -2;
-    	}
-    	for(INodo n: this.getDescendientes()) {
-    		ind = n.getIndex(nodo);
-    		if(ind == -2) {
-    			return this.getDescendientes().indexOf(nodo);
-    		}
-    		if(ind != -1) {
-    			return ind;
-    		}
-    	}
-    	return ind;
-    }*/
-    
+    @Override
     public int getIndex(int etiqueta) {
     	int ind = -1;
     	for(INodo n: this.getDescendientes()) {
@@ -90,6 +91,7 @@ public abstract class Nodo implements INodo, Cloneable {
     	return -1;
     }
     
+    @Override
     public void incluirDescendiente(INodo nodo) throws IllegalArgumentException, CloneNotSupportedException {
         if (this.descendientes.size() >= this.maxDesc) {
             throw new IllegalArgumentException();
@@ -98,15 +100,15 @@ public abstract class Nodo implements INodo, Cloneable {
         n.setPadre(this);
         return;
     }
-
-    public abstract double calcular();
-
+    
+    @Override
     public INodo copy() throws CloneNotSupportedException {
         INodo n;
         n = (INodo) this.clone();
         return n;
     }
-
+    
+    @Override
     public int etiquetaNodo(int inicio) {
         this.etiqueta = inicio;
         int aux = inicio;
@@ -120,6 +122,7 @@ public abstract class Nodo implements INodo, Cloneable {
         return aux;
     }
 
+    @Override
     public INodo getNodo(int indice) {
         if (this.getEtiqueta() == indice) {
             return this;
@@ -138,12 +141,13 @@ public abstract class Nodo implements INodo, Cloneable {
 
     }
 
-    
+    @Override
     public void detachPadre() {
     	this.getPadre().getDescendientes().remove(this);
     	this.setPadre(null);
     }
 
+    @Override
     public int getMaxDesc() {
         return maxDesc;
     }

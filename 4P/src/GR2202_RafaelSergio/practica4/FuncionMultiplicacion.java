@@ -1,7 +1,17 @@
 package GR2202_RafaelSergio.practica4;
 
+
+/**
+ * Función Multiplicar para un dominio aritmético.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class FuncionMultiplicacion extends Funcion {
-	
+	/**
+	 * Constructor de la clase FuncionMultiplicación
+	 * @param simbolo Símbolo de la Función
+	 * @param maxDesc Máximo número de descendientes
+	 */
 	public FuncionMultiplicacion(String simbolo, int maxDesc) {
         super(simbolo, maxDesc);
     }

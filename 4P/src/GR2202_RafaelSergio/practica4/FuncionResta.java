@@ -1,6 +1,16 @@
 package GR2202_RafaelSergio.practica4;
 
+/**
+ * Función Resta para un dominio aritmético.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class FuncionResta extends Funcion {
+	/**
+	 * Constructor de la clase FuncionResta
+	 * @param simbolo Símbolo de la Función
+	 * @param maxDesc Máximo número de descendientes
+	 */
     public FuncionResta(String simbolo, int maxDesc) {
         super(simbolo, maxDesc);
     }

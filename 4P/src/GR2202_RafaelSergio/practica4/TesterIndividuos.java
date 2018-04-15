@@ -1,5 +1,10 @@
 package GR2202_RafaelSergio.practica4;
 
+/**
+ * Tester del funcionamiento de los Individuos.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class TesterIndividuos {
 	public static void main(String[] args) throws IllegalArgumentException, CloneNotSupportedException {
 		Terminal x = new TerminalAritmetico("x");

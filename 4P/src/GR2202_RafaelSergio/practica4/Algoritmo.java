@@ -3,8 +3,13 @@ package GR2202_RafaelSergio.practica4;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-public class Algoritmo {
+/**
+ * Clase Algoritmo implementada para posibilitar la ejecuciï¿½n de un algoritmo genï¿½tico
+ * sobre un conjunto de terminales y funciones dado.
+ * @author Rafael Sï¿½nchez y Sergio Galï¿½n G2202
+ *
+ */
+public class Algoritmo implements IAlgoritmo{
     private List<Funcion> funciones;
     private List<Terminal> terminales;
     private List<IIndividuo> poblacion;
@@ -16,7 +21,14 @@ public class Algoritmo {
     private int maxGen;
     private int gen;
     private double objetivo;
-
+    /**
+     * Constructor de la clase Algoritmo
+     * @param profundidadMaxima Profundidad mï¿½xima de los individuos de la poblaciï¿½n inicial
+     * @param individuosTorneo Nï¿½mero de individuos seleccionados para el torneo
+     * @param numIndividuos Tamaï¿½o de la poblaciï¿½n
+     * @param objetivo Porcentaje de aciertos necesarios para considerarse a un individuo apto (En decimal entre 0 y 1)
+     * @param maxGen Nï¿½mero mï¿½ximo de generaciones que se producirï¿½n
+     */
     public Algoritmo(int profundidadMaxima, int individuosTorneo, int numIndividuos, double objetivo, int maxGen){
         poblacion = new ArrayList<>();
         this.profundidadMaxima = profundidadMaxima;
@@ -25,15 +37,18 @@ public class Algoritmo {
         this.objetivo = objetivo;
         this.maxGen = maxGen;
     }
-    
+
+    @Override
     public void defineConjuntoTerminales(List<Terminal> terminales) {
     	this.terminales = terminales;
     }
-    
+
+    @Override
     public void defineConjuntoFunciones(List<Funcion> funciones) {
     	this.funciones = funciones;
     }
 
+    @Override
     public void crearPoblacion() throws CloneNotSupportedException {
         for(int i = 0; i < numIndividuos; ++i) {
             Individuo individuo = new Individuo();
@@ -44,6 +59,11 @@ public class Algoritmo {
         }
     }
 
+    /**
+     * Mï¿½todo auxiliar para la creaciï¿½n de la poblaciï¿½n inicial
+     * @return Nodo a insertar en el individuo
+     * @throws CloneNotSupportedException
+     */
     private INodo recursionPoblacion() throws CloneNotSupportedException {
         INodo ncopia = null;
         ++this.profundidad;
@@ -61,7 +81,8 @@ public class Algoritmo {
         --this.profundidad;
         return ncopia;
     }
-    
+
+    @Override
     public List<IIndividuo> cruce(IIndividuo i1, IIndividuo i2) throws CruceNuloException{
 		int aleat1 = (int) (Math.random() * i1.getNumeroNodos());
 		int aleat2 = (int) (Math.random() * i2.getNumeroNodos());
@@ -71,8 +92,6 @@ public class Algoritmo {
 		if(aleat1 == 0 && aleat2 == 0) {
 			throw new CruceNuloException();
 		}
-		//System.out.println("Punto de cruce del progenitor 1: " + aleat1);
-		//System.out.println("Punto de cruce del progenitor 2: " + aleat2);
 		aux1 = i1.getNodo(aleat1);
 		aux2 = i2.getNodo(aleat2);
 		if(aleat1 == 0) {
@@ -146,7 +165,8 @@ public class Algoritmo {
 		this.poblacion.addAll(paraCruzar);
 		this.poblacion.addAll(resto);
 	}
-    
+
+    @Override
     public void ejecutar(IDominio dominio) throws CloneNotSupportedException {
     	this.defineConjuntoFunciones(dominio.getFunciones());
     	this.defineConjuntoTerminales(dominio.getTerminales());
@@ -170,7 +190,7 @@ public class Algoritmo {
     		this.fitness = (int) this.poblacion.get(0).getFitness();
     		++this.gen;
     	}
-    	System.out.println("Final del algoritmo genético. Resultado: ");
+    	System.out.println("Final del algoritmo genï¿½tico. Resultado: ");
     	System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
 		poblacion.get(0).writeIndividuo();
     }

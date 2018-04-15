@@ -1,7 +1,17 @@
 package GR2202_RafaelSergio.practica4;
 
+/**
+ * Función Suma para un dominio aritmético.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class FuncionSuma extends Funcion {
 
+	/**
+	 * Constructor de la clase FuncionSuma
+	 * @param simbolo Símbolo de la Función
+	 * @param maxDesc Máximo número de descendientes
+	 */
     public FuncionSuma(String simbolo, int maxDesc) {
         super(simbolo, maxDesc);
     }
