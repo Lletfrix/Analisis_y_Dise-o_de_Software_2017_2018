@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,6 +16,8 @@ public class DominioAritmetico implements IDominio{
 	private List<Funcion> funciones;
 	
 	public DominioAritmetico(double tol) {
+		this.terminales = new ArrayList<Terminal>();
+		this.funciones = new ArrayList<Funcion>();
 		this.tol = tol;
 	}
 	
@@ -80,7 +83,7 @@ public class DominioAritmetico implements IDominio{
 		for (Map.Entry<Double, Double> e : vp.entrySet()) {
 			TerminalAritmetico.setValor(e.getKey());
 			aux = individuo.calcularExpresion();
-			System.out.println("Valor " + e.getKey() + " <-> Rdo estimado: " + aux + " <-> Rdo real: " + e.getValue());
+			//System.out.println("Valor " + e.getKey() + " <-> Rdo estimado: " + aux + " <-> Rdo real: " + e.getValue());
 			if(Math.abs(aux - e.getValue()) <= this.tol) {
 				tot = tot + 1;
 			}
@@ -88,6 +91,9 @@ public class DominioAritmetico implements IDominio{
 		individuo.setFitness(tot);
 		return tot;
 	}
-	
-	
+
+
+	public Map<Double, Double> getVp() {
+		return vp;
+	}
 }

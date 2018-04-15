@@ -8,7 +8,7 @@ public class FuncionMultiplicacion extends Funcion {
 	
 	@Override
 	public double calcular() {
-		double total = 0;
+		double total = 1;
         for (INodo n : this.getDescendientes()){
             total *= n.calcular();
         }

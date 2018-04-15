@@ -53,10 +53,10 @@ public class Individuo implements IIndividuo{
 	}
 	@Override
 	public int compareTo(IIndividuo indiv) {
-		if(this.getFitness() < indiv.getFitness()) {
+		if(this.getFitness() > indiv.getFitness()) {
 			return -1;
 		}
-		else if(this.getFitness() > indiv.getFitness()) {
+		else if(this.getFitness() < indiv.getFitness()) {
 			return 1;
 		}
 		return 0;

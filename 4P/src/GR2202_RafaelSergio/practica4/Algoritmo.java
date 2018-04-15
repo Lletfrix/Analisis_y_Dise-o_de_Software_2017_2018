@@ -37,25 +37,28 @@ public class Algoritmo {
     public void crearPoblacion() throws CloneNotSupportedException {
         for(int i = 0; i < numIndividuos; ++i) {
             Individuo individuo = new Individuo();
+            this.profundidad = 0;
             individuo.setExpresion(recursionPoblacion());
+            individuo.etiquetaNodos();
             poblacion.add(individuo);
         }
     }
 
     private INodo recursionPoblacion() throws CloneNotSupportedException {
         INodo ncopia = null;
-        this.profundidad = 0;
+        ++this.profundidad;
         if(profundidadMaxima == profundidad){
         	int aleat = (int)(Math.random() * terminales.size());
         	ncopia = terminales.get(aleat).copy();
-        }else{
+        }else if (profundidad < profundidadMaxima){
             int aleat = (int) (Math.random() * funciones.size());
             ncopia = funciones.get(aleat).copy();
             for (int i = 0; i < ncopia.getMaxDesc(); ++i){
                 ncopia.incluirDescendiente(recursionPoblacion());
             }
-            ++this.profundidad;
+
         }
+        --this.profundidad;
         return ncopia;
     }
     
@@ -90,6 +93,8 @@ public class Algoritmo {
 			aux1.setPadre(paux2, ind2);
 			aux2.setPadre(paux1, ind1);
 		}
+		i1.etiquetaNodos();
+		i2.etiquetaNodos();
 		lista.add(i1);
 		lista.add(i2);
 		return lista;
@@ -106,7 +111,8 @@ public class Algoritmo {
     	Collections.shuffle(this.poblacion);
     	this.poblacion.add(0, mejor);
     	for(i = 0; i < this.individuosTorneo; i++) {
-    		torneo.add(this.poblacion.remove((int) Math.floor(Math.random() * interval + min)));
+    		torneo.add(this.poblacion.remove((int) (Math.random() * interval + min)));
+    		--interval;
     	}
     	Collections.sort(torneo);
     	indiv1 = torneo.remove(0);
@@ -134,14 +140,16 @@ public class Algoritmo {
     		dominio.calcularFitness(indiv);
     	}
     	Collections.sort(this.poblacion);
-    	while(this.fitness < this.objetivo |  gen < this.maxGen) {
+    	while(this.fitness < this.objetivo * dominio.getVp().size() &&  gen < this.maxGen) {
     		this.crearNuevaPoblacion();
+            for(IIndividuo indiv: this.poblacion) {
+                dominio.calcularFitness(indiv);
+            }
     		Collections.sort(this.poblacion);
-    		for(IIndividuo indiv: this.poblacion) {
-        		dominio.calcularFitness(indiv);
-        	}
-    		System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
-    		poblacion.get(0).writeIndividuo();
+    		//System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
+    		//poblacion.get(0).writeIndividuo();
+    		this.fitness = (int) this.poblacion.get(0).getFitness();
+    		++this.gen;
     	}
     	System.out.println("Final del algoritmo genético. Resultado: ");
     	System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
