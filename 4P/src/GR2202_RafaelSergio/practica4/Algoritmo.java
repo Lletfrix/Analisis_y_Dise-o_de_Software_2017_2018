@@ -190,7 +190,7 @@ public class Algoritmo implements IAlgoritmo{
     		this.fitness = (int) this.poblacion.get(0).getFitness();
     		++this.gen;
     	}
-    	System.out.println("Final del algoritmo gen�tico. Resultado: ");
+    	System.out.println("Final del algoritmo genetico. Resultado: ");
     	System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
 		poblacion.get(0).writeIndividuo();
     }

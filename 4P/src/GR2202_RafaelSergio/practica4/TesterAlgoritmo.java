@@ -17,7 +17,7 @@ public class TesterAlgoritmo {
         Algoritmo algoritmo = new Algoritmo(5, 32, 100, 1, 100000);
         algoritmo.defineConjuntoTerminales(dom.getTerminales());
         algoritmo.defineConjuntoFunciones(dom.getFunciones());
-        dom.definirValoresPrueba("4P/files/datos.txt");
+        dom.definirValoresPrueba("files/datos.txt");
         algoritmo.ejecutar(dom);
 	}
 }
