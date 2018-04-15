@@ -1,11 +1,19 @@
 package GR2202_RafaelSergio.practica4;
 
-public  abstract  class Terminal extends Nodo{
-
+/**
+ * Clase abstracta que implementa métodos generales de un Terminal cualquiera
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
+public abstract class Terminal extends Nodo{
+	
+	/**
+	 * Constructor auxiliar de los Terminales
+	 * @param simbolo Símbolo del Terminal
+	 */
     public Terminal(String simbolo){
-        super(simbolo, 1);
+        super(simbolo, 0);
     }
-    public abstract double calcular();
     
     @Override
     public String toString() {

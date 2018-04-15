@@ -3,6 +3,11 @@ package GR2202_RafaelSergio.practica4;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase auxiliar con el único propósito de testear la función cruce
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class PruebaCruce {
 	public List<IIndividuo> cruce(IIndividuo i1, IIndividuo i2) throws CruceNuloException{
 		int aleat1 = (int) (Math.random() * i1.getNumeroNodos());

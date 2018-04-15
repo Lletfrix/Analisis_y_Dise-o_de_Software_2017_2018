@@ -3,8 +3,13 @@ package GR2202_RafaelSergio.practica4;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-public class Algoritmo {
+/**
+ * Clase Algoritmo implementada para posibilitar la ejecución de un algoritmo genético
+ * sobre un conjunto de terminales y funciones dado.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
+public class Algoritmo implements IAlgoritmo{
     private List<Funcion> funciones;
     private List<Terminal> terminales;
     private List<IIndividuo> poblacion;
@@ -16,7 +21,14 @@ public class Algoritmo {
     private int maxGen;
     private int gen;
     private double objetivo;
-
+    /**
+     * Constructor de la clase Algoritmo
+     * @param profundidadMaxima Profundidad máxima de los individuos de la población inicial
+     * @param individuosTorneo Número de individuos seleccionados para el torneo
+     * @param numIndividuos Tamaño de la población
+     * @param objetivo Porcentaje de aciertos necesarios para considerarse a un individuo apto (En decimal entre 0 y 1)
+     * @param maxGen Número máximo de generaciones que se producirán
+     */
     public Algoritmo(int profundidadMaxima, int individuosTorneo, int numIndividuos, double objetivo, int maxGen){
         poblacion = new ArrayList<>();
         this.profundidadMaxima = profundidadMaxima;
@@ -26,14 +38,17 @@ public class Algoritmo {
         this.maxGen = maxGen;
     }
     
+    @Override
     public void defineConjuntoTerminales(List<Terminal> terminales) {
     	this.terminales = terminales;
     }
     
+    @Override
     public void defineConjuntoFunciones(List<Funcion> funciones) {
     	this.funciones = funciones;
     }
-
+    
+    @Override
     public void crearPoblacion() throws CloneNotSupportedException {
         for(int i = 0; i < numIndividuos; ++i) {
             Individuo individuo = new Individuo();
@@ -43,7 +58,12 @@ public class Algoritmo {
             poblacion.add(individuo);
         }
     }
-
+    
+    /**
+     * Método auxiliar para la creación de la población inicial
+     * @return Nodo a insertar en el individuo
+     * @throws CloneNotSupportedException
+     */
     private INodo recursionPoblacion() throws CloneNotSupportedException {
         INodo ncopia = null;
         ++this.profundidad;
@@ -62,6 +82,7 @@ public class Algoritmo {
         return ncopia;
     }
     
+    @Override
     public List<IIndividuo> cruce(IIndividuo i1, IIndividuo i2) throws CruceNuloException{
 		int aleat1 = (int) (Math.random() * i1.getNumeroNodos());
 		int aleat2 = (int) (Math.random() * i2.getNumeroNodos());
@@ -71,8 +92,6 @@ public class Algoritmo {
 		if(aleat1 == 0 && aleat2 == 0) {
 			throw new CruceNuloException();
 		}
-		//System.out.println("Punto de cruce del progenitor 1: " + aleat1);
-		//System.out.println("Punto de cruce del progenitor 2: " + aleat2);
 		aux1 = i1.getNodo(aleat1);
 		aux2 = i2.getNodo(aleat2);
 		if(aleat1 == 0) {
@@ -100,34 +119,48 @@ public class Algoritmo {
 		return lista;
 	}
     
+    @Override
     public void crearNuevaPoblacion() {
     	IIndividuo mejor = null;
     	IIndividuo indiv1, indiv2;
     	List<IIndividuo> torneo = new ArrayList<>();
+    	List<IIndividuo> paraCruzar = new ArrayList<>();
+    	List<IIndividuo> resto = new ArrayList<>();
     	int i;
+    	int tope = this.poblacion.size();
     	int min = (int)Math.floor ((int)this.poblacion.size()*0.1);
-    	int interval = this.poblacion.size() - min;
+    	//int interval = this.poblacion.size() - min;
     	mejor = this.poblacion.remove(0);
     	Collections.shuffle(this.poblacion);
     	this.poblacion.add(0, mejor);
-    	for(i = 0; i < this.individuosTorneo; i++) {
-    		torneo.add(this.poblacion.remove((int) (Math.random() * interval + min)));
-    		--interval;
+    	for(int j = min; j < tope; j++) {
+    		paraCruzar.add(this.poblacion.remove(j));
+    		--tope;
     	}
-    	Collections.sort(torneo);
-    	indiv1 = torneo.remove(0);
-    	indiv2 = torneo.remove(1);
-    	this.poblacion.addAll(torneo);
-    	try {
-			this.poblacion.addAll(this.cruce(indiv1, indiv2));
-		} catch (CruceNuloException e) {
-			this.poblacion.add(indiv1);
-			this.poblacion.add(indiv2);
-			crearNuevaPoblacion();
-			return;
-		}
+    	//paraCruzar = this.poblacion.subList(min, this.poblacion.size()-1).clone();
+    	while(paraCruzar.size() >= this.individuosTorneo) {
+	    	for(i = 0; i < this.individuosTorneo; i++) {
+	    		Collections.shuffle(paraCruzar);
+	    		torneo.add(paraCruzar.remove(0));
+	    	}
+	    	Collections.sort(torneo);
+	    	indiv1 = torneo.remove(0);
+	    	indiv2 = torneo.remove(0);
+	    	paraCruzar.addAll(torneo);
+	    	torneo.clear();
+	    	try {
+				resto.addAll(this.cruce(indiv1, indiv2));
+			} catch (CruceNuloException e) {
+				paraCruzar.add(indiv1);
+				paraCruzar.add(indiv2);
+				continue;
+			}
+    	}
+    	this.poblacion.addAll(paraCruzar);
+    	this.poblacion.addAll(resto);
     }
     
+    @Override
     public void ejecutar(IDominio dominio) throws CloneNotSupportedException {
     	this.defineConjuntoFunciones(dominio.getFunciones());
     	this.defineConjuntoTerminales(dominio.getTerminales());

@@ -2,6 +2,11 @@ package GR2202_RafaelSergio.practica4;
 
 import java.io.IOException;
 
+/**
+ * Tester del cálculo del fitness.
+ * @author Rafael Sánchez y Sergio Galán G2202
+ *
+ */
 public class TesterLecturaYFitness {
 
 	public static void main(String[] args) throws IOException, IllegalArgumentException, CloneNotSupportedException {
