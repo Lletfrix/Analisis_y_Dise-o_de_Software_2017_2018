@@ -8,7 +8,7 @@ public class TesterAlgoritmo {
 		int nArio[] = {2, 2, 1};
 		dom.definirConjuntoTerminales("X", "Y", "Z");
 		dom.definirConjuntoFunciones(nArio, "∧", "v", "¬");
-        Algoritmo algoritmo = new Algoritmo(5, 4, 100, 1, 30);
+        Algoritmo algoritmo = new Algoritmo(4, 8, 100, 1, 10000);
         algoritmo.defineConjuntoTerminales(dom.getTerminales());
         algoritmo.defineConjuntoFunciones(dom.getFunciones());
         dom.definirValoresPrueba("files/datos.txt");

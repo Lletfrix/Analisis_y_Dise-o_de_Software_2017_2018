@@ -138,8 +138,8 @@ public class Algoritmo {
             try {
                 resto.addAll(this.cruce(indiv1, indiv2));
             } catch (CruceNuloException e) {
-                paraCruzar.add(indiv1);
-                paraCruzar.add(indiv2);
+                this.poblacion.add(indiv1);
+                this.poblacion.add(indiv2);
                 continue;
             }
         }
@@ -165,8 +165,8 @@ public class Algoritmo {
                 dominio.calcularFitness(indiv);
             }
     		Collections.sort(this.poblacion);
-    		//System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
-    		//poblacion.get(0).writeIndividuo();
+    		System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
+    		poblacion.get(0).writeIndividuo();
     		this.fitness = (int) this.poblacion.get(0).getFitness();
     		++this.gen;
     	}

@@ -99,34 +99,53 @@ public class Algoritmo {
 		lista.add(i2);
 		return lista;
 	}
-    
-    public void crearNuevaPoblacion() {
-    	IIndividuo mejor = null;
-    	IIndividuo indiv1, indiv2;
-    	List<IIndividuo> torneo = new ArrayList<>();
-    	int i;
-    	int min = (int)Math.floor ((int)this.poblacion.size()*0.1);
-    	int interval = this.poblacion.size() - min;
-    	mejor = this.poblacion.remove(0);
-    	Collections.shuffle(this.poblacion);
-    	this.poblacion.add(0, mejor);
-    	for(i = 0; i < this.individuosTorneo; i++) {
-    		torneo.add(this.poblacion.remove((int) (Math.random() * interval + min)));
-    		--interval;
-    	}
-    	Collections.sort(torneo);
-    	indiv1 = torneo.remove(0);
-    	indiv2 = torneo.remove(1);
-    	this.poblacion.addAll(torneo);
-    	try {
-			this.poblacion.addAll(this.cruce(indiv1, indiv2));
-		} catch (CruceNuloException e) {
-			this.poblacion.add(indiv1);
-			this.poblacion.add(indiv2);
-			crearNuevaPoblacion();
-			return;
+
+	public void crearNuevaPoblacion() {
+		IIndividuo mejor = null;
+		IIndividuo indiv1, indiv2;
+		List<IIndividuo> torneo = new ArrayList<>();
+		List<IIndividuo> paraCruzar = new ArrayList<>();
+		List<IIndividuo> resto = new ArrayList<>();
+		List<IIndividuo> mejores = new ArrayList<>();
+		int i;
+		int tope = this.poblacion.size();
+		int min = (int)Math.floor ((int)this.poblacion.size()*0.1);
+		int bests = (int)Math.floor ((int)this.poblacion.size()*0.02);
+
+		/* Pasa al 2% mejor a la siguiente generacion */
+		for (i = 0; i < bests; i++) {
+			mejores.add(this.poblacion.remove(0));
 		}
-    }
+
+		//mejor = this.poblacion.remove(0);
+		Collections.shuffle(this.poblacion);
+		this.poblacion.addAll(0, mejores);
+		for(int j = min; j < tope; j++) {
+			paraCruzar.add(this.poblacion.remove(j));
+			--tope;
+		}
+		//paraCruzar = this.poblacion.subList(min, this.poblacion.size()-1).clone();
+		while(paraCruzar.size() >= this.individuosTorneo) {
+			Collections.shuffle(paraCruzar);
+			for(i = 0; i < this.individuosTorneo; i++) {
+				torneo.add(paraCruzar.remove(0));
+			}
+			Collections.sort(torneo);
+			indiv1 = torneo.remove(0);
+			indiv2 = torneo.remove(0);
+			paraCruzar.addAll(torneo);
+			torneo.clear();
+			try {
+				resto.addAll(this.cruce(indiv1, indiv2));
+			} catch (CruceNuloException e) {
+				this.poblacion.add(indiv1);
+				this.poblacion.add(indiv2);
+				continue;
+			}
+		}
+		this.poblacion.addAll(paraCruzar);
+		this.poblacion.addAll(resto);
+	}
     
     public void ejecutar(IDominio dominio) throws CloneNotSupportedException {
     	this.defineConjuntoFunciones(dominio.getFunciones());
