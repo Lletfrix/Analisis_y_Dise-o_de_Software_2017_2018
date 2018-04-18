@@ -10,11 +10,11 @@ skinparam {
   Shadowing false
 }
 
-title Diagrama de clases de la aplicación Cine
+title Diagrama de clases de la práctica 4
 
 hide enum methods
 
-class Cine << (S,#FF7700) >> {
+class Algoritmo {
     - nombre : String
     - direccion : String
 

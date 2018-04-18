@@ -15,13 +15,13 @@ public class SalaTest {
         Sesion sesion = new Sesion(2018, 03, 27, 23, 30, pelicula, sala);
 
         if(sala.addSesion(sesion)){
-            System.out.println("Se puede añadir una sesion en una sala vacia");
+            System.out.println("Se puede anadir una sesion en una sala vacia");
             numTests++;
         }
         totalTests++;
 
         if(!sala.addSesion(sesion)){
-            System.out.println("No se puede añadir una sesion a una sala a una hora en la que la sala este ocupada");
+            System.out.println("No se puede anadir una sesion a una sala a una hora en la que la sala este ocupada");
             numTests++;
         }
         totalTests++;

@@ -1,7 +1,7 @@
 /**
-* Clase Fecha en la que almacenamos todos los datos requeridos (día, mes y año), y los métodos necesarios para poder
-* mostrar la información requerida en el apartado 1 de la práctica 2.
-* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+* Clase Fecha en la que almacenamos todos los datos requeridos (dia, mes y ano), y los metodos necesarios para poder
+* mostrar la informacion requerida en el apartado 1 de la practica 2.
+* @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
 */
 public class Fecha {
     private int dia;
@@ -28,8 +28,8 @@ public class Fecha {
         return datos;
     }
     /**
-     * Comprobador de la validez de una Fecha dada. Admitimos cualquier año positivo.
-     * @return Boolean que representa si una Fecha es válida o no
+     * Comprobador de la validez de una Fecha dada. Admitimos cualquier ano positivo.
+     * @return Boolean que representa si una Fecha es valida o no
      */
     public Boolean isFechaValida(){
         if (this.mes < 1 || this.mes > 12 || this.anio < 0){

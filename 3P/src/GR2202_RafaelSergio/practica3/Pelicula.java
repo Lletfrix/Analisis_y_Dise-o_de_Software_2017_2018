@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 /**
  * Clase Pelicula implementada para cumplir la funcionalidad especificada en la
- * Práctica 3 de ADSOF
- * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+ * Practica 3 de ADSOF
+ * @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public class Pelicula{
@@ -18,9 +18,9 @@ public class Pelicula{
     private LinkedList<Sesion> sesiones;
     /**
      * Constructor de la clase Pelicula
-     * @param titulo Título de la Pelicula
+     * @param titulo Titulo de la Pelicula
      * @param director Director de la Pelicula
-     * @param anno Año de la Pelicula
+     * @param anno Ano de la Pelicula
      * @param sinopsis Sinopsis de la Pelicula
      * @param genero Genero de la Pelicula
      */
@@ -33,7 +33,7 @@ public class Pelicula{
         this.sesiones = new LinkedList<Sesion>();
     }
     /**
-     * Getter del título de la Pelicula
+     * Getter del titulo de la Pelicula
      * @return Titulo de la Pelicula
      */
     public String getTitulo(){
@@ -47,8 +47,8 @@ public class Pelicula{
         return this.director;
     }
     /**
-     * Getter del año de la Pelicula
-     * @return Año de la Pelicula
+     * Getter del ano de la Pelicula
+     * @return Ano de la Pelicula
      */
     public String getAnno(){
         return this.anno;
@@ -61,15 +61,15 @@ public class Pelicula{
         return this.sinopsis;
     }
     /**
-     * Getter del género de la Pelicula
-     * @return Género de la Pelicula
+     * Getter del genero de la Pelicula
+     * @return Genero de la Pelicula
      */
     public Genero getGenero(){
         return this.genero;
     }
     /**
-     * Setter del título de la Pelicula
-     * @param titulo Nuevo título de la Pelicula
+     * Setter del titulo de la Pelicula
+     * @param titulo Nuevo titulo de la Pelicula
      */
     public void setTitulo(String titulo){
         this.titulo = titulo;
@@ -82,8 +82,8 @@ public class Pelicula{
         this.director = director;
     }
     /**
-     * Setter del año de la Pelicula
-     * @param anno Nuevo año de la Pelicula
+     * Setter del ano de la Pelicula
+     * @param anno Nuevo ano de la Pelicula
      */
     public void setAnno(String anno){
         this.anno = anno;
@@ -96,14 +96,14 @@ public class Pelicula{
         this.sinopsis = sinopsis;
     }
     /**
-     * Setter del género de la Pelicula
-     * @param genero Nuevo género de la Pelicula
+     * Setter del genero de la Pelicula
+     * @param genero Nuevo genero de la Pelicula
      */
     public void setGenero(Genero genero){
         this.genero = genero;
     }
     /**
-     * Método para mostrar la información de todas las Sesiones de la Película
+     * Metodo para mostrar la informacion de todas las Sesiones de la Pelicula
      */
     public void showSesiones(){
         for (Sesion sesion : this.sesiones) {
@@ -111,20 +111,20 @@ public class Pelicula{
         }
     }
     /**
-     * Método para añadir una Sesión a la lista de Sesiones de una Película
-     * @param sesion Nueva Sesión de la Película
+     * Metodo para anadir una Sesion a la lista de Sesiones de una Pelicula
+     * @param sesion Nueva Sesion de la Pelicula
      */
     public void addSesion(Sesion sesion){
         this.sesiones.add(sesion);
     }
     /**
-     * Método para buscar una Sesión en la lista de Sesiones de la Película dados sus atributos
-     * @param anno Año de la Fecha de la Sesión
-     * @param mes Mes de la Fecha de la Sesión
-     * @param dia Día de la Fecha de la Sesión
-     * @param hora Hora de la Sesión
-     * @param minutos Minutos de la hora de la Sesión
-     * @return Sesión si se encuentra, null en caso contrario
+     * Metodo para buscar una Sesion en la lista de Sesiones de la Pelicula dados sus atributos
+     * @param anno Ano de la Fecha de la Sesion
+     * @param mes Mes de la Fecha de la Sesion
+     * @param dia Dia de la Fecha de la Sesion
+     * @param hora Hora de la Sesion
+     * @param minutos Minutos de la hora de la Sesion
+     * @return Sesion si se encuentra, null en caso contrario
      */
     public Sesion getSesion(int anno, int mes, int dia, int hora, int minutos){
         int i = 0;
@@ -149,8 +149,8 @@ public class Pelicula{
         return null;
     }
     /**
-     * Método para retirar todas las Sesiones de una Película
-     * @return Booleano que representa el éxito o fallo de la operación
+     * Metodo para retirar todas las Sesiones de una Pelicula
+     * @return Booleano que representa el exito o fallo de la operacion
      */
     public boolean remove(){
         for (Sesion s : this.sesiones) {
@@ -159,8 +159,8 @@ public class Pelicula{
         return true;
     }
     /**
-     * Método para retirar una Sesión concreta de una Película
-     * @param sesion Sesión a eliminar
+     * Metodo para retirar una Sesion concreta de una Pelicula
+     * @param sesion Sesion a eliminar
      */
     public void removeSesion(Sesion sesion) {
         int i = 0;
@@ -173,20 +173,20 @@ public class Pelicula{
         }
     }
     /**
-     * Sustitución del toString estándar para la clase Película
-     * @return String con la información de la película
+     * Sustitucion del toString estandar para la clase Pelicula
+     * @return String con la informacion de la pelicula
      */
     @Override
     public String toString(){
-        return "Título: " + titulo + "\n\t" +
+        return "Titulo: " + titulo + "\n\t" +
         "Director: " + director + "\n\t" +
-        "Año: " + anno + "\n\t" +
+        "Ano: " + anno + "\n\t" +
         "Sinopsis: " + sinopsis + "\n\t" +
         "Genero: " + genero + "\n\t";
     }
     /**
-     * Sustitución del equals estándar para la clase Película
-     * @param object Película a comparar
+     * Sustitucion del equals estandar para la clase Pelicula
+     * @param object Pelicula a comparar
      * @return Booleano representando si son iguales o no
      */
     @Override

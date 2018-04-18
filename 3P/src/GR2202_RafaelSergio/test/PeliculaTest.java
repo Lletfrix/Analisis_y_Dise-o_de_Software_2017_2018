@@ -47,7 +47,7 @@ public class PeliculaTest {
         System.out.println("Mostrando informacion de las sesiones...");
         p.showSesiones();
         numTests++;totalTests++;
-        System.out.println("Se pueden añadir sesiones correctamente");
+        System.out.println("Se pueden anadir sesiones correctamente");
         System.out.println("Mostrando informacion de la pelicula...");
         System.out.println(p);
         System.out.println(numTests+"/"+totalTests+" test(s) fueron correctos.");

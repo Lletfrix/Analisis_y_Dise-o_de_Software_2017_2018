@@ -1,6 +1,6 @@
 /**
-* Clase Autoescuela con los métodos necesarios para implementar el apartado 4 de la práctica 2 por medio de la nueva clase Contrato.
-* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+* Clase Autoescuela con los metodos necesarios para implementar el apartado 4 de la practica 2 por medio de la nueva clase Contrato.
+* @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
 */
 public class Autoescuela{
     private String nombre;
@@ -9,8 +9,8 @@ public class Autoescuela{
     /**
      * Constructor de la clase Autoescuela
      * @param nombre Nombre de la Autoescuela
-     * @param codigo Código de la Autoescuela
-     * @param direccion Dirección de la Autoescuela
+     * @param codigo Codigo de la Autoescuela
+     * @param direccion Direccion de la Autoescuela
      */
     public Autoescuela(String nombre, String codigo, String direccion){
         this.nombre = nombre;

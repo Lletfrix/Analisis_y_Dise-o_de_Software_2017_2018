@@ -12,8 +12,8 @@ import GR2202_RafaelSergio.practica3.Sesion;
 
 /**
  * Clase Cine implementada para cumplir la funcionalidad especificada en la
- * Práctica 3 de ADSOF
- * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+ * Practica 3 de ADSOF
+ * @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public class Cine {
@@ -35,40 +35,40 @@ public class Cine {
         this.listaEntradas = new ArrayList<Entrada>();
     }
     /**
-     * Método para añadir una Película a la Cartelera del Cine dados sus atributos
-     * @param titulo Nombre de la Película
-     * @param director Nombre del director de la Película
-     * @param anno Año de la Película
-     * @param sinopsis Sinopsis de la Película
-     * @param genero Género de la película
-     * @return Película añadida al Cine
+     * Metodo para anadir una Pelicula a la Cartelera del Cine dados sus atributos
+     * @param titulo Nombre de la Pelicula
+     * @param director Nombre del director de la Pelicula
+     * @param anno Ano de la Pelicula
+     * @param sinopsis Sinopsis de la Pelicula
+     * @param genero Genero de la pelicula
+     * @return Pelicula anadida al Cine
      */
     public Pelicula addPelicula(String titulo, String director, String anno, String sinopsis, Genero genero){
         return this.cartelera.addPelicula(titulo, director, anno, sinopsis, genero);
     }
     /**
-     * Método para añadir una Película a la lista de Películas del Cine dado un objeto Película
-     * @param p Película a añadir a la lista
-     * @return Película añadida al Cine
+     * Metodo para anadir una Pelicula a la lista de Peliculas del Cine dado un objeto Pelicula
+     * @param p Pelicula a anadir a la lista
+     * @return Pelicula anadida al Cine
      */
     public Pelicula addPelicula(Pelicula p){
         this.cartelera.addPelicula(p);
         return p;
     }
     /**
-     * Método para añadir una Sala al Cine dados sus atributos
-     * @param numButacasFila Número de butacas por fila
-     * @param numButacasColumna Número de butacas por columna
-     * @return Sala añadida al Cine
+     * Metodo para anadir una Sala al Cine dados sus atributos
+     * @param numButacasFila Numero de butacas por fila
+     * @param numButacasColumna Numero de butacas por columna
+     * @return Sala anadida al Cine
      */
     public Sala addSala(int numButacasFila, int numButacasColumna){
         Sala s = new Sala(numButacasFila, numButacasColumna);
         return this.addSala(s);
     }
     /**
-     * Método para añadir una Sala al Cine dado un objeto Sala
-     * @param s Sala que añadir al Cine
-     * @return Sala añadida al Cine
+     * Metodo para anadir una Sala al Cine dado un objeto Sala
+     * @param s Sala que anadir al Cine
+     * @return Sala anadida al Cine
      */
     public Sala addSala(Sala s){
         if(s == null){
@@ -78,24 +78,24 @@ public class Cine {
         return s;
     }
     /**
-     * Método para añadir una Sesión al Cine dados sus atributos
-     * @param anno Año de la Fecha de la Sesión
-     * @param mes Mes de la Fecha de la Sesión
-     * @param dia Día de la Fecha de la Sesión
-     * @param hora Hora de la Sesión
-     * @param minutos Minutos de la Sesión
-     * @param pelicula Película que se proyecta en la Sesión
-     * @param sala Sala en la que tiene lugar la Sesión
-     * @return Sesión añadida al Cine
+     * Metodo para anadir una Sesion al Cine dados sus atributos
+     * @param anno Ano de la Fecha de la Sesion
+     * @param mes Mes de la Fecha de la Sesion
+     * @param dia Dia de la Fecha de la Sesion
+     * @param hora Hora de la Sesion
+     * @param minutos Minutos de la Sesion
+     * @param pelicula Pelicula que se proyecta en la Sesion
+     * @param sala Sala en la que tiene lugar la Sesion
+     * @return Sesion anadida al Cine
      */
     public Sesion addSesion(int anno, int mes, int dia, int hora, int minutos, Pelicula pelicula, Sala sala){
         Sesion sesion = new Sesion(anno, mes, dia, hora, minutos, pelicula, sala);
         return this.addSesion(sesion);
     }
     /**
-     * Método para añadir una Sesión a la lista de Sesiones del Cine
-     * @param sesion Objeto Sesión que queremos añadir al Cine
-     * @return Sesión añadida al Cine o null en caso de error
+     * Metodo para anadir una Sesion a la lista de Sesiones del Cine
+     * @param sesion Objeto Sesion que queremos anadir al Cine
+     * @return Sesion anadida al Cine o null en caso de error
      */
     public Sesion addSesion(Sesion sesion){
         if (!sesion.getSala().addSesion(sesion)){
@@ -105,11 +105,11 @@ public class Cine {
         return sesion;
     }
     /**
-     * Método para vender cierto número de Entradas para cierta Sesión del Cine
-     * @param sesion Sesión de la cual se quieren comprar Entradas
-     * @param numEntradas Número de entradas que queremos comprar
+     * Metodo para vender cierto numero de Entradas para cierta Sesion del Cine
+     * @param sesion Sesion de la cual se quieren comprar Entradas
+     * @param numEntradas Numero de entradas que queremos comprar
      * @param tipo Tipo de entrada a vender.
-     * @return Booleano indicando si la operación ha ido bien o no
+     * @return Booleano indicando si la operacion ha ido bien o no
      */
     public boolean venderEntradas(Sesion sesion, int numEntradas, TipoEntrada tipo){
         int i;
@@ -139,7 +139,7 @@ public class Cine {
         return true;
     }
     /**
-     * Método para mostrar los datos de todas las Películas que hay en el Cine
+     * Metodo para mostrar los datos de todas las Peliculas que hay en el Cine
      */
     public void showPeliculas(){
         for (Pelicula pelicula : this.cartelera.getPeliculas()) {
@@ -147,7 +147,7 @@ public class Cine {
         }
     }
     /**
-     * Método para mostrar la recaudación del Cine
+     * Metodo para mostrar la recaudacion del Cine
      */
     public void showRecaudacion(){
         float total = 0;
@@ -157,7 +157,7 @@ public class Cine {
         System.out.println("Recaudacion: $" + total);
     }
     /**
-     * Método para mostrar los datos de todas las Sesiones que hay en el Cine
+     * Metodo para mostrar los datos de todas las Sesiones que hay en el Cine
      */
     public void showSesiones(){
         for (Pelicula pelicula : this.cartelera.getPeliculas()){
@@ -165,11 +165,11 @@ public class Cine {
         }
     }
     /**
-     * Getter de una Película concreta del Cine, si existe en el Cine
-     * @param titulo Título de la Película
-     * @param director Director de la Película
-     * @param anno Año de la Película
-     * @return Película si la encuentra, en caso contrario null
+     * Getter de una Pelicula concreta del Cine, si existe en el Cine
+     * @param titulo Titulo de la Pelicula
+     * @param director Director de la Pelicula
+     * @param anno Ano de la Pelicula
+     * @return Pelicula si la encuentra, en caso contrario null
      */
     public Pelicula getPelicula(String titulo, String director, String anno){
         Pelicula pelicula = new Pelicula(titulo, director, anno, "Sinopsis", Genero.DOCUMENTAL);
@@ -194,9 +194,9 @@ public class Cine {
         return null;
     }
     /**
-     * Método para eliminar una Película concreta del Cine
-     * @param pelicula Película a eliminar del Cine
-     * @return Booleano que representa el éxito o fracaso de la operación
+     * Metodo para eliminar una Pelicula concreta del Cine
+     * @param pelicula Pelicula a eliminar del Cine
+     * @return Booleano que representa el exito o fracaso de la operacion
      */
     public boolean removePelicula(Pelicula pelicula){
         int i=0;
@@ -215,9 +215,9 @@ public class Cine {
         return false;
     }
     /**
-     * Método para eliminar una Sala concreta del Cine
+     * Metodo para eliminar una Sala concreta del Cine
      * @param sala Sala a eliminar del Cine
-     * @return Booleano que representa el éxito o fracaso de la operación
+     * @return Booleano que representa el exito o fracaso de la operacion
      */
     public boolean removeSala(Sala sala){
         int i=0;

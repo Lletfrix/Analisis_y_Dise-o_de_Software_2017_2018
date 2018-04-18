@@ -1,8 +1,8 @@
 package GR2202_RafaelSergio.practica3;
 /**
- * Enumeración Género implementada para cumplir la funcionalidad especificada en la
- * Práctica 3 de ADSOF
- * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+ * Enumeracion Genero implementada para cumplir la funcionalidad especificada en la
+ * Practica 3 de ADSOF
+ * @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public enum Genero{

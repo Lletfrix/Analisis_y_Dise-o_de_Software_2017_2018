@@ -1,7 +1,7 @@
 /**
-* Clase Alumno en la que almacenamos todos los datos requeridos, y los métodos necesarios para poder
-* mostrar la información requerida en el apartado 1 de la práctica 2.
-* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+* Clase Alumno en la que almacenamos todos los datos requeridos, y los metodos necesarios para poder
+* mostrar la informacion requerida en el apartado 1 de la practica 2.
+* @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
 */
 public class Alumno {
     private String dni;
@@ -16,7 +16,7 @@ public class Alumno {
      * @param apellido Apellido del Alumno
      * @param dia Dia de la fecha de matriculacion del alumno
      * @param mes Mes de la matriculacion del Alumno (como entero)
-     * @param anio Año de la matriculacion del Alumno
+     * @param anio Ano de la matriculacion del Alumno
      * @param carnet Tipo de carnet para el que esta matriculado el Alumno
      */
      public Alumno(String dni, String nombre, String apellido, int anio, int mes, int dia, String carnet){

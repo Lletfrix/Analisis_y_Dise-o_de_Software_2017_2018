@@ -1,9 +1,9 @@
 package GR2202_RafaelSergio.practica3;
 /**
- * Clase Butaca implementada para dotar de algo más de realismo a las butacas de
- * la sala, dándoles una fila y una columna concretas.
+ * Clase Butaca implementada para dotar de algo mas de realismo a las butacas de
+ * la sala, dandoles una fila y una columna concretas.
  *
- * @author Rafael Sánchez Sánchez y Sergio Galán Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+ * @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
  *
  */
 public class Butaca {

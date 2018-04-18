@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 /**
-* Clase Profesor en la que almacenamos todos los datos requeridos, y los métodos necesarios para poder
-* mostrar la información requerida en el apartado 4 opcional de la práctica 2. No se implementa la clase
-* persona por simplicidad del código aunque ésta esté reflejada en el diagrama de clases.
-* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+* Clase Profesor en la que almacenamos todos los datos requeridos, y los metodos necesarios para poder
+* mostrar la informacion requerida en el apartado 4 opcional de la practica 2. No se implementa la clase
+* persona por simplicidad del codigo aunque esta este reflejada en el diagrama de clases.
+* @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
 */
 public class Profesor{
     private String numSS;
@@ -33,8 +33,8 @@ public class Profesor{
     }
 
     /**
-     * Añade un nuevo Contrato a la lista de Contratos del profesor (Devuelve el propio Profesor para permitir múltiples adiciones seguidas)
-     * @param contrato Contrato a añadir a la lista
+     * Anade un nuevo Contrato a la lista de Contratos del profesor (Devuelve el propio Profesor para permitir multiples adiciones seguidas)
+     * @param contrato Contrato a anadir a la lista
      * @return El propio Profesor
      */
     public Profesor addContrato(Contrato contrato){
@@ -43,7 +43,7 @@ public class Profesor{
     }
 
     /**
-     * Imprime toda la información relativa a las Autoescuelas y periodos en los que ha trabajado en ellas el Profesor
+     * Imprime toda la informacion relativa a las Autoescuelas y periodos en los que ha trabajado en ellas el Profesor
      */
     public void printInformacion(){
         for (Contrato contrato : contratos){

@@ -15,28 +15,28 @@ public class CineTest {
         p1 = cine.addPelicula("Los Teletubbies", "Magia", "1992", "Un grupo de amigos de 5 furries" +
                 " que siguen la voz de un narrador sin control", Genero.SUSPENSE);
         if(p1 != null){
-            System.out.println("Puede añadir una pelicula al cine");
+            System.out.println("Puede anadir una pelicula al cine");
             numTests++;
         }
         totalTests++;
 
         s1 = cine.addSala(15, 30);
         if(s1 != null){
-            System.out.println("Puede añadir una sala al cine");
+            System.out.println("Puede anadir una sala al cine");
             numTests++;
         }
         totalTests++;
 
         sesion = cine.addSesion(2018, 03, 27, 23, 30, p1, s1);
         if(sesion != null){
-            System.out.println("Puede añadir una sesion dada una pelicula y una sala.");
+            System.out.println("Puede anadir una sesion dada una pelicula y una sala.");
             numTests++;
         }
         totalTests++;
 
         s1 = cine.addSala(10, 20);
         if(s1 != null){
-            System.out.println("Puede añadir una sala nueva al cine");
+            System.out.println("Puede anadir una sala nueva al cine");
             numTests++;
         }
         totalTests++;
@@ -44,7 +44,7 @@ public class CineTest {
         s1 = cine.getSala(1);
         sesion = cine.addSesion(2018, 03, 27, 23, 30, p1, s1);
         if(sesion == null){
-            System.out.println("No puede añadir una sesion a una sala ocupada. Puede encontrar una sala dado su id");
+            System.out.println("No puede anadir una sesion a una sala ocupada. Puede encontrar una sala dado su id");
             numTests++;
         }
         totalTests++;

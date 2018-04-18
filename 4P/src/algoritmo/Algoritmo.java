@@ -1,0 +1,205 @@
+package algoritmo;
+
+import dominio.IDominio;
+import excepciones.CruceNuloException;
+import individuo.IIndividuo;
+import individuo.Individuo;
+import nodo.INodo;
+import nodo.funciones.Funcion;
+import nodo.terminales.Terminal;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+/**
+ * Clase Algoritmo implementada para posibilitar la ejecucion de un algoritmo genetico
+ * sobre un conjunto de terminales y funciones dado.
+ * @author Rafael Sanchez y Sergio Galan G2202
+ *
+ */
+public class Algoritmo implements IAlgoritmo {
+    private List<Funcion> funciones;
+    private List<Terminal> terminales;
+    private List<IIndividuo> poblacion;
+    private int profundidad;
+    private int fitness;
+    private int profundidadMaxima;
+    private int individuosTorneo;
+    private int numIndividuos;
+    private int maxGen;
+    private int gen;
+    private double objetivo;
+    /**
+     * Constructor de la clase Algoritmo
+     * @param profundidadMaxima Profundidad m�xima de los individuos de la poblaci�n inicial
+     * @param individuosTorneo N�mero de individuos seleccionados para el torneo
+     * @param numIndividuos Tama�o de la poblaci�n
+     * @param objetivo Porcentaje de aciertos necesarios para considerarse a un individuo apto (En decimal entre 0 y 1)
+     * @param maxGen N�mero m�ximo de generaciones que se producir�n
+     */
+    public Algoritmo(int profundidadMaxima, int individuosTorneo, int numIndividuos, double objetivo, int maxGen){
+        poblacion = new ArrayList<>();
+        this.profundidadMaxima = profundidadMaxima;
+        this.individuosTorneo = individuosTorneo;
+        this.numIndividuos = numIndividuos;
+        this.objetivo = objetivo;
+        this.maxGen = maxGen;
+    }
+
+    @Override
+    public void defineConjuntoTerminales(List<Terminal> terminales) {
+    	this.terminales = terminales;
+    }
+
+    @Override
+    public void defineConjuntoFunciones(List<Funcion> funciones) {
+    	this.funciones = funciones;
+    }
+
+    @Override
+    public void crearPoblacion() throws CloneNotSupportedException {
+        for(int i = 0; i < numIndividuos; ++i) {
+            Individuo individuo = new Individuo();
+            this.profundidad = 0;
+            individuo.setExpresion(recursionPoblacion());
+            individuo.etiquetaNodos();
+            poblacion.add(individuo);
+        }
+    }
+
+    /**
+     * M�todo auxiliar para la creaci�n de la poblaci�n inicial
+     * @return Nodo a insertar en el individuo
+     * @throws CloneNotSupportedException
+     */
+    private INodo recursionPoblacion() throws CloneNotSupportedException {
+        INodo ncopia = null;
+        ++this.profundidad;
+        if(profundidadMaxima == profundidad){
+        	int aleat = (int)(Math.random() * terminales.size());
+        	ncopia = terminales.get(aleat).copy();
+        }else if (profundidad < profundidadMaxima){
+            int aleat = (int) (Math.random() * funciones.size());
+            ncopia = funciones.get(aleat).copy();
+            for (int i = 0; i < ncopia.getMaxDesc(); ++i){
+                ncopia.incluirDescendiente(recursionPoblacion());
+            }
+
+        }
+        --this.profundidad;
+        return ncopia;
+    }
+
+    @Override
+    public List<IIndividuo> cruce(IIndividuo i1, IIndividuo i2) throws CruceNuloException {
+		int aleat1 = (int) (Math.random() * i1.getNumeroNodos());
+		int aleat2 = (int) (Math.random() * i2.getNumeroNodos());
+		INodo aux1, aux2, paux1, paux2;
+		int ind1, ind2;
+		List<IIndividuo> lista = new ArrayList<>();
+		if(aleat1 == 0 && aleat2 == 0) {
+			throw new CruceNuloException();
+		}
+		aux1 = i1.getNodo(aleat1);
+		aux2 = i2.getNodo(aleat2);
+		if(aleat1 == 0) {
+            aux1.setPadre(aux2.getPadre(), aux2.getPadre().getIndex(aleat2));
+            aux2.detachPadre();
+			i1.setExpresion(aux2);
+		}
+		else if(aleat2 == 0) {
+            aux2.setPadre(aux1.getPadre(), aux1.getPadre().getIndex(aleat1));
+            aux1.detachPadre();
+			i2.setExpresion(aux1);
+		}
+		else {
+            paux1 = aux1.getPadre();
+            paux2 = aux2.getPadre();
+            ind1 = paux1.getIndex(aleat1);
+            ind2 = paux2.getIndex(aleat2);
+			aux1.setPadre(paux2, ind2);
+			aux2.setPadre(paux1, ind1);
+		}
+		i1.etiquetaNodos();
+		i2.etiquetaNodos();
+		lista.add(i1);
+		lista.add(i2);
+		return lista;
+	}
+
+	public void crearNuevaPoblacion() {
+		IIndividuo mejor = null;
+		IIndividuo indiv1, indiv2;
+		List<IIndividuo> torneo = new ArrayList<>();
+		List<IIndividuo> paraCruzar = new ArrayList<>();
+		List<IIndividuo> resto = new ArrayList<>();
+		List<IIndividuo> mejores = new ArrayList<>();
+		int i;
+		int tope = this.poblacion.size();
+		int min = (int)Math.floor ((int)this.poblacion.size()*0.1);
+		int bests = (int)Math.floor ((int)this.poblacion.size()*0.05);
+
+		/* Pasa al 2% mejor a la siguiente generacion */
+		for (i = 0; i < bests; i++) {
+			mejores.add(this.poblacion.remove(0));
+		}
+
+		//mejor = this.poblacion.remove(0);
+		Collections.shuffle(this.poblacion);
+		this.poblacion.addAll(0, mejores);
+		for(int j = min; j < tope; j++) {
+			paraCruzar.add(this.poblacion.remove(j));
+			--tope;
+		}
+		//paraCruzar = this.poblacion.subList(min, this.poblacion.size()-1).clone();
+		while(paraCruzar.size() >= this.individuosTorneo) {
+			Collections.shuffle(paraCruzar);
+			for(i = 0; i < this.individuosTorneo; i++) {
+				torneo.add(paraCruzar.remove(0));
+			}
+			Collections.sort(torneo);
+			indiv1 = torneo.remove(0);
+			indiv2 = torneo.remove(0);
+			paraCruzar.addAll(torneo);
+			torneo.clear();
+			try {
+				resto.addAll(this.cruce(indiv1, indiv2));
+			} catch (CruceNuloException e) {
+				this.poblacion.add(indiv1);
+				this.poblacion.add(indiv2);
+				continue;
+			}
+		}
+		this.poblacion.addAll(paraCruzar);
+		this.poblacion.addAll(resto);
+	}
+
+    @Override
+    public void ejecutar(IDominio dominio) throws CloneNotSupportedException {
+    	this.defineConjuntoFunciones(dominio.getFunciones());
+    	this.defineConjuntoTerminales(dominio.getTerminales());
+    	this.fitness = 0;
+    	this.gen = 1;
+    	if(this.poblacion.size() == 0) {
+    		this.crearPoblacion();
+    	}
+    	for(IIndividuo indiv: this.poblacion) {
+    		dominio.calcularFitness(indiv);
+    	}
+    	Collections.sort(this.poblacion);
+    	while(this.fitness < this.objetivo * dominio.getVp().size() &&  gen < this.maxGen) {
+    		this.crearNuevaPoblacion();
+            for(IIndividuo indiv: this.poblacion) {
+                dominio.calcularFitness(indiv);
+            }
+    		Collections.sort(this.poblacion);
+    		//System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
+    		//poblacion.get(0).writeIndividuo();
+    		this.fitness = (int) this.poblacion.get(0).getFitness();
+    		++this.gen;
+    	}
+    	System.out.println("Final del algoritmo genetico. Resultado: ");
+    	System.out.print("Generacion: " + this.gen + " Fitness: " + this.poblacion.get(0).getFitness() + " Individuo: ");
+		poblacion.get(0).writeIndividuo();
+    }
+}

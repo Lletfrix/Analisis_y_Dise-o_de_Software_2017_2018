@@ -1,6 +1,6 @@
 /**
 * Clase Contrato creada para hacer posible que la clase Profesor sea general para el mismo profesor en toda la cadena de autoescuelas.
-* @author Rafael Sánchez Sánchez y Sergio Galan Martín: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
+* @author Rafael Sanchez Sanchez y Sergio Galan Martin: rafael.sanchez@estudiante.uam.es y sergio.galanm@estudiante.uam.es
 */
 public class Contrato{
     private Fecha fechaInic;
@@ -9,10 +9,10 @@ public class Contrato{
 
     /**
      * Constructor de la clase Contrato
-     * @param anyoInic Año de inicio del Contrato
+     * @param anyoInic Ano de inicio del Contrato
      * @param mesInic Mes de inicio del Contrato
      * @param diaInic Dia de inicio del Contrato
-     * @param anyoFin Año de fin del Contrato
+     * @param anyoFin Ano de fin del Contrato
      * @param mesFin Mes de fin del Contrato
      * @param diaFin Dia de fin del Contrato
      * @param autoescuela Autoescuela que contrata al profesor
