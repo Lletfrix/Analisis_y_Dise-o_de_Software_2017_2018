@@ -47,6 +47,18 @@ public class DominioBooleano implements IDominio{
 				}
 				this.funciones.add(new FuncionNot(s));
 			}
+			if(s.equals("NAND")) {
+				if(argumentos[cont] != 2) {
+					throw new ArgsDistintosFuncionesException();
+				}
+				this.funciones.add(new FuncionNand(s, argumentos[cont]));
+			}
+			if(s.equals("NOR")) {
+				if(argumentos[cont] != 2) {
+					throw new ArgsDistintosFuncionesException();
+				}
+				this.funciones.add(new FuncionNor(s, argumentos[cont]));
+			}
 			cont++;
 		}
 		return this.funciones;
