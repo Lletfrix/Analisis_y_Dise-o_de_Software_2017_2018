@@ -1,0 +1,182 @@
+@startuml
+abstract class nodo.Nodo{
+    - String simbolo
+    - INodo padre
+    - List<INodo> descendientes
+    - int maxDesc
+    - int etiqueta
+
+    copy​() : INodo
+    detachPadre​() : void
+    etiquetaNodo​(int inicio) : int
+    getDescendientes​() : List<INodo>
+    getEtiqueta​() : int
+    getIndex​(int etiqueta) : int
+    getMaxDesc​() : int
+    getNodo​(int indice) : INodo
+    getPadre​() : INodo
+    getRaiz​() : String
+    incluirDescendiente​(INodo nodo) : void
+    setEtiqueta​(int etiqueta) : void
+    setPadre​(INodo padre) : void
+    setPadre​(INodo padre, int ind) : void
+}
+abstract class nodo.funciones.Funcion{
+    toStrin() : String
+    getNumeroNodos() : int
+}
+abstract class nodo.terminales.Terminal{
+    toString() : String
+    getNumeroNodos() : int
+}
+
+class algoritmo.Algoritmo{
+    - List<Funcion> funciones
+    - List<Terminal> terminales
+    - List<IIndividuo> poblacion
+    - int profundidad
+    - int fitness
+    - int profundidadMaxima
+    - int individuosTorneo
+    - int numIndividuos
+    - int maxGen
+    - int gen
+    - double objetivo
+
+    crearNuevaPoblacion() : void
+    crearPoblacion() : void
+    cruce(IIndividuo i1, IIndividuo i2) : List<IIndividuo>
+    defineConjuntoFunciones(List<Funcion>) : void
+    defineConjuntoTerminales(List<Terminal>) : void
+    ejecutar(IDominio dominio) : void
+    - recursionPoblacion() : INodo
+}
+class dominio.DominioAritmetico{
+    - Map<Double, Double> vp
+    - double tol
+    - List<Terminal> terminales
+    - List<Funcion> funciones
+
+    calcularFitness(IIndividuo individuo) : double
+    definirConjuntoFunciones(int[] argumentos, String... funciones) : List<Funcion>
+    definirConjuntoTerminales(String... terminales) : List<Terminal>
+    definirValoresPrueba(String ficheroDatos) : void
+    getFunciones() : List<Funcion>
+    getTerminales() : List<Terminal>
+    getVp() : Map <Double, Double>
+}
+class excepciones.ArgsDistintosFuncionesException
+class excepciones.CruceNuloException
+class individuo.Individuo{
+    - INodo expresion
+	- double fitness
+
+    calcularExpresion​() : double
+    etiquetaNodos​() : void
+    getExpresion​() : INodo
+    getFitness​() : double
+    getNodo​(int indice) : INodo
+    getNumeroNodos​() : int
+    setExpresion​(INodo expresion) : void
+    setFitness​(double fitness) : void
+    writeIndividuo​() : void
+}
+
+class nodo.funciones.FuncionMultiplicacion{
+    calcular() : double
+    clone() : FuncionMultiplicacion
+}
+class nodo.funciones.FuncionResta{
+    calcular() : double
+    clone() : FuncionResta
+}
+class nodo.funciones.FuncionSuma{
+    calcular() : double
+    clone() : FuncionSuma
+}
+class nodo.terminales.TerminalAritmetico{
+    - valor : static double
+    setValor(double v) : static void
+    calcular() : double
+    clone() : TerminalAritmetico
+}
+class testers.PruebaCruce
+class testers.TesterAlgoritmo{
+    main() : void
+}
+class testers.TesterCruce{
+    main() : void
+}
+class testers.TesterIndividuos{
+    main() : void
+}
+class testers.TesterLecturaYFitness{
+    main() : void
+}
+interface algoritmo.IAlgoritmo {
+    crearNuevaPoblacion() : void
+    crearPoblacion() : void
+    cruce(IIndividuo i1, IIndividuo i2) : List<IIndividuo>
+    defineConjuntoFunciones(List<Funcion>) : void
+    defineConjuntoTerminales(List<Terminal>) : void
+    ejecutar(IDominio dominio) : void
+}
+interface dominio.IDominio{
+    calcularFitness(IIndividuo individuo) : double
+    definirConjuntoFunciones(int[] argumentos, String... funciones) : List<Funcion>
+    definirConjuntoTerminales(String... terminales) : List<Terminal>
+    definirValoresPrueba(String ficheroDatos) : void
+    getFunciones() : List<Funcion>
+    getTerminales() : List<Terminal>
+    getVp() : <A, B> Map <A, B>
+}
+interface individuo.IIndividuo{
+    calcularExpresion​() : double
+    etiquetaNodos​() : void
+    getExpresion​() : INodo
+    getFitness​() : double
+    getNodo​(int indice) : INodo
+    getNumeroNodos​() : int
+    setExpresion​(INodo expresion) : void
+    setFitness​(double fitness) : void
+    writeIndividuo​() : void
+}
+
+interface nodo.INodo{
+    calcular​() : double
+    copy​() : INodo
+    detachPadre​() : void
+    etiquetaNodo​(int inicio) : int
+    getDescendientes​() : List<INodo>
+    getEtiqueta​() : int
+    getIndex​(int etiqueta) : int
+    getMaxDesc​() : int
+    getNodo​(int indice) : INodo
+    getNumeroNodos​() : int
+    getPadre​() : INodo
+    getRaiz​() : String
+    incluirDescendiente​(INodo nodo) : void
+    setEtiqueta​(int etiqueta) : void
+    setPadre​(INodo padre) : void
+    setPadre​(INodo padre, int ind) : void
+}
+
+nodo.Nodo --|> nodo.INodo
+nodo.funciones.Funcion --|> nodo.Nodo
+
+nodo.terminales.Terminal --|> nodo.Nodo
+
+algoritmo.Algoritmo --|> algoritmo.IAlgoritmo
+
+dominio.DominioAritmetico --|> dominio.IDominio
+
+individuo.Individuo --|> individuo.IIndividuo
+nodo.funciones.FuncionMultiplicacion --|> nodo.funciones.Funcion
+
+nodo.funciones.FuncionResta --|> nodo.funciones.Funcion
+
+nodo.funciones.FuncionSuma --|> nodo.funciones.Funcion
+
+nodo.terminales.TerminalAritmetico --|> nodo.terminales.Terminal
+
+@enduml
