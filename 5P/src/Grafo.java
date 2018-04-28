@@ -9,7 +9,7 @@ public abstract class Grafo<T> {
 	protected Map<Integer, Map<Integer, Double>> arcos;
 
 	public Grafo(){
-	    this.vertices=new TreeMap<>();
+	    this.vertices = new TreeMap<>();
 	    this.arcos = new TreeMap<>();
     }
 		
@@ -50,9 +50,9 @@ public abstract class Grafo<T> {
 			aux += e.getValue().toString();
 		}
 		aux += "\nAristas: " + "\n";
-		for(Entry e: this.arcos.entrySet()) {
+		for(Entry<Integer, Map<Integer, Double>> e: this.arcos.entrySet()) {
 			aux += e.getKey() + ": ";
-			for(Map.Entry eaux: ((Map<Integer, Double>) e.getValue()).entrySet()) {
+			for(Entry<Integer, Double> eaux: ((Map<Integer, Double>) e.getValue()).entrySet()) {
 				aux += "{" + eaux.getKey() + ", "+ eaux.getValue()+"} ";
 			}
 			aux += "\n";

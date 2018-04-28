@@ -2,7 +2,7 @@ import java.util.List;
 
 public class TestGrafoDirigido {
     public static void main (String[] args) throws ArcoNoExistenteException {
-        Grafo<String> g = new GrafoDirigido<>();
+        Grafo<String> g = new GrafoDirigido<String>();
         System.out.println(g.getClass().getName() + "\n");
         Vertice<String> v1 = g.addVertice("A");
         Vertice<String> v2 = g.addVertice("B");
