@@ -1,11 +1,8 @@
-/ArcoNoExistenteException.class
-/Grafo.class
-/GrafoDirigido.class
+/GrafoGOT$1.class
+/GrafoGOT.class
 /GrafoNoDirigido.class
+/PersonajeGOT.class
 /TestGrafoDirigido.class
 /TestGrafoNoDirigido.class
-/Vertice.class
-/GrafoGOT.class
-/PersonajeGOT.class
-/GrafoGOT$1.class
 /TesterGrafoGOT.class
+/Vertice.class

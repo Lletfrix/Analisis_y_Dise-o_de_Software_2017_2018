@@ -8,5 +8,7 @@ public class TesterGrafoGOT {
 		System.out.println(got.getVertice("Doreah"));
 		System.out.println(got.casas());
 		System.out.println(got.miembrosCasa("Targaryen"));
+		System.out.println(got.gradoPersonajes());
+		System.out.println(got.gradoPonderadoPersonajes());
 	}
 }

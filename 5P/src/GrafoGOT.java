@@ -17,7 +17,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT>{
 		
 		for(String x = vertices.readLine(); x != null; x = vertices.readLine()) {
 			StringTokenizer str = new StringTokenizer(x, ",");
-			String[] info = new String[str.countTokens()];
+			//String[] info = new String[str.countTokens()];
 			String aux = null;
 			this.addVertice(Integer.parseInt(str.nextToken()), new PersonajeGOT(str.nextToken(), str.nextToken()));
 		}
@@ -35,9 +35,9 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT>{
 	
 	public List<String> casas(){
 		List<String> aux = new ArrayList<>();
-		aux.addAll(this.vertices.entrySet().stream().map(entry -> entry.getValue().getDatos().getCasa()).filter(s -> s != null).sorted((c1, c2) -> c1.compareTo(c2)).collect(Collectors.toCollection(TreeSet::new)));
+		aux.addAll(this.vertices.entrySet().stream().map(entry -> entry.getValue().getDatos().getCasa()).filter(s -> !s.equals("null")).sorted((c1, c2) -> c1.compareTo(c2)).collect(Collectors.toCollection(TreeSet::new)));
 		
-		return aux; //TODO Aparece null como familia por alguna razón
+		return aux;
 	}
 	
 	public List<String> miembrosCasa(String casa) {
@@ -59,7 +59,7 @@ public class GrafoGOT extends GrafoNoDirigido<PersonajeGOT>{
 	}
 	
 	public Map<Object, Long> gradoPonderadoPersonajes() {
-		return this.arcos.entrySet().stream().collect(Collectors.groupingBy(Entry::getKey, Collectors.counting() /*,Collectors.summingDouble(e -> e.getClass())*/)); //TODO
+		return this.arcos.entrySet().stream().collect(Collectors.groupingBy(Entry::getKey, Collectors.counting() /*,Collectors.summingDouble(e -> )*/)); //TODO
 	}
 
 	public Map<String, Double> personajesRelevantes() {
